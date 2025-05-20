@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimarin_chill/data/models/album_model.dart';
+import 'package:shimarin_chill/utils/app_text_style.dart';
 
 class AlbumCard extends StatelessWidget {
   const AlbumCard({
@@ -48,15 +49,21 @@ class AlbumCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 8),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(data.name ?? ''),
-                  data.time != null
-                      ? const Text("data.time")
-                      : const SizedBox.shrink(),
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      data.name ?? '',
+                      style: AppTextStyle.title(size: 20),
+                    ),
+                    data.time != null
+                        ? const Text("data.time")
+                        : const SizedBox.shrink(),
+                  ],
+                ),
               )
             ],
           ),

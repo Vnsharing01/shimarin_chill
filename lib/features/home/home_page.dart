@@ -49,26 +49,21 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Gần đây",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: AppTextStyle.lable(),
                   ),
                   AlbumCard(
                     data: AlbumModel(
                       image: 'assets/images/miku_study.jpg',
                       name: 'Học tập',
                     ),
+                    
                   ),
                   const SizedBox(height: 16),
-                  const Text(
+                  Text(
                     "Chủ Đề",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                    ),
+                    style: AppTextStyle.lable(),
                   ),
                   Expanded(
                     child: ListView.separated(
