@@ -1,4 +1,7 @@
-class AlbumModel {
+import 'package:hive_flutter/adapters.dart';
+
+@HiveType(typeId: 1)
+class AlbumModel extends HiveObject{
   final String? name;
   final String? image;
   final List<String>? sounds;
