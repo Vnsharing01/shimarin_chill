@@ -43,7 +43,7 @@ class AlbumCard extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image.asset(
-                    data.image ?? '',
+                    data.coverImage ?? '',
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -56,10 +56,10 @@ class AlbumCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      data.name ?? '',
+                      data.title ?? '',
                       style: AppTextStyle.title(size: 20),
                     ),
-                    data.time != null
+                    data.selectedTime != null
                         ? const Text("data.time")
                         : const SizedBox.shrink(),
                   ],

@@ -31,7 +31,7 @@ class BackgroundAlbumCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
-                  image: AssetImage(data.image ?? ''),
+                  image: AssetImage(data.coverImage ?? ''),
                   fit: BoxFit.fill,
                   opacity: 0.5,
                 ),
@@ -53,13 +53,13 @@ class BackgroundAlbumCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      data.name ?? '',
+                      data.title ?? '',
                       style: AppTextStyle.title(
                         size: 24,
                         color: Colors.white,
                       ),
                     ),
-                    data.time != null
+                    data.selectedTime != null
                         ? const Text("data.time")
                         : const SizedBox.shrink(),
                   ],

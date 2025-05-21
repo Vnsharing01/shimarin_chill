@@ -55,8 +55,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                   AlbumCard(
                     data: AlbumModel(
-                      image: 'assets/images/miku_study.jpg',
-                      name: 'Học tập',
+                      coverImage: 'assets/images/miku_study.jpg',
+                      title: 'Học tập',
                     ),
                     
                   ),
@@ -73,8 +73,8 @@ class _HomePageState extends State<HomePage> {
                         return BackgroundAlbumCard(
                           height: 100,
                           data: AlbumModel(
-                            image: 'assets/images/miku_study.jpg',
-                            name: 'Học tập',
+                            coverImage: 'assets/images/miku_study.jpg',
+                            title: 'Học tập',
                           ),
                         );
                       },
