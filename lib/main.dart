@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shimarin_chill/data/locals/local_hive.dart';
+import 'package:shimarin_chill/data/models/album_model.dart';
+import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/routes/routes.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(SoundModelAdapter());
+  Hive.registerAdapter(AlbumModelAdapter());
+
+  await Hive.openBox<SoundModel>('sounds');
+  await Hive.openBox<AlbumModel>('albums');
+
+  final localHive = LocalHive();
+
   runApp(const MyApp());
 }
 

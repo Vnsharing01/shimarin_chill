@@ -1,25 +1,24 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:shimarin_chill/utils/enum/sound_tag_enum.dart';
 
+part 'sound_model.g.dart';
+
 @HiveType(typeId: 0)
 class SoundModel extends HiveObject {
   @HiveField(0)
   final String? id;
 
   @HiveField(1)
-  final String? title;
+  final String? title; // tên sound
 
   @HiveField(2)
-  final String? filePath;
+  final String? filePath; // url sound file
 
   @HiveField(3)
-  final Duration? duration;
+  final Duration? duration; // thời gian chạy đếm ngược
 
   @HiveField(4)
-  final String? coverImage;
-
-  @HiveField(5)
-  final DateTime? lastPlayed;
+  final String? coverImage; // Ảnh bìa sound
 
   @HiveField(6)
   final List<String>? albumIds;
@@ -33,7 +32,6 @@ class SoundModel extends HiveObject {
     this.filePath,
     this.duration,
     this.coverImage,
-    this.lastPlayed,
     this.albumIds,
     this.tags,
   });
