@@ -1,0 +1,26 @@
+const _imagePath = "assets/images";
+
+final imgsUrl = [
+  "$_imagePath/anime_chill_001.jpg",
+  "$_imagePath/anime_chill_002.jpg",
+  "$_imagePath/anime_chill_004.jpg",
+  "$_imagePath/anime_chill_003.jpg",
+  "$_imagePath/anime_chill.jpg",
+  "$_imagePath/background_chill_001.jpg",
+  "$_imagePath/background_chill_coffee.jpg",
+  "$_imagePath/background_chill.jpg",
+  "$_imagePath/background_study_001.jpg",
+  "$_imagePath/background_study.jpg",
+  "$_imagePath/coffee_chill_002.jpg",
+  "$_imagePath/coffee_chill_003.jpg",
+  "$_imagePath/coffee_chill_004.jpg",
+  "$_imagePath/coffee_chill_005.jpg",
+  "$_imagePath/coffee_chill.jpg",
+  "$_imagePath/coffee_lofi.jpg",
+  "$_imagePath/miku_chill_1200.jpg",
+  "$_imagePath/miku_chill.jpg",
+  "$_imagePath/miku_study.jpg",
+  "$_imagePath/study_001.png",
+  "$_imagePath/study_chill.jpg",
+  "$_imagePath/study_girl.jpg",
+];
