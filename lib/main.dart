@@ -15,6 +15,9 @@ void main() async {
 
   final localHive = LocalHive();
 
+  await localHive.initSounds();
+  await localHive.initAlbums();
+
   runApp(const MyApp());
 }
 

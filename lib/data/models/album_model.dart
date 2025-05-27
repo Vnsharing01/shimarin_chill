@@ -20,13 +20,13 @@ class AlbumModel extends HiveObject {
   final DateTime? lastPlayed; // Lần cuối mở album này
 
   @HiveField(5)
-  final SoundTagEnum? tags; // Ví dụ: ["anime", "tập trung", "coffee"]
+  final String? tag; // Ví dụ: ["anime", "tập trung", "coffee"]
 
   @HiveField(6) // Danh sách các sound id (liên kết với box<Sound>)
   final List<String>? soundIds;
 
   @HiveField(7)
-  final DateTime? selectedTime; // thời gian hẹn giờ đã chọn
+  final int? selectedTime; // thời gian hẹn giờ đã chọn
 
   AlbumModel({
     this.id,
@@ -34,7 +34,7 @@ class AlbumModel extends HiveObject {
     this.description,
     this.coverImage,
     this.lastPlayed,
-    this.tags,
+    this.tag,
     this.soundIds,
     this.selectedTime,
   });

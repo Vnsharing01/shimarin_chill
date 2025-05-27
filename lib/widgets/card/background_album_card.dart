@@ -12,12 +12,13 @@ class BackgroundAlbumCard extends StatelessWidget {
 
   final void Function()? onTap;
   final double? height;
-  final AlbumModel data;
+  final AlbumModel? data;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
@@ -31,7 +32,7 @@ class BackgroundAlbumCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
-                  image: AssetImage(data.coverImage ?? ''),
+                  image: AssetImage(data?.coverImage ?? ''),
                   fit: BoxFit.fill,
                   opacity: 0.5,
                 ),
@@ -53,13 +54,13 @@ class BackgroundAlbumCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      data.title ?? '',
+                      data?.title ?? '',
                       style: AppTextStyle.title(
                         size: 24,
                         color: Colors.white,
                       ),
                     ),
-                    data.selectedTime != null
+                    data?.selectedTime != null
                         ? const Text("data.time")
                         : const SizedBox.shrink(),
                   ],

@@ -11,6 +11,10 @@ enum SoundTagEnum {
     title: "ANIME",
     key: 'anime',
   ),
+  rain(
+    title: "RAIN",
+    key: 'rain',
+  ),
   coffee(
     title: "COFFEE  ",
     key: 'coffee',

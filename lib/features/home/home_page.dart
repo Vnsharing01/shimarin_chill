@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shimarin_chill/data/locals/local_hive.dart';
 import 'package:shimarin_chill/data/models/album_model.dart';
 import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
 import 'package:shimarin_chill/routes/router_path.dart';
@@ -20,6 +21,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final localHive = LocalHive();
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -27,9 +29,10 @@ class _HomePageState extends State<HomePage> {
           extendBodyBehindAppBar: true,
           appBar: AppBar(
             title: Text(
-              "Home",
+              "Shimarin Chill",
               style: AppTextStyle.title(),
             ),
+            backgroundColor: Colors.yellow,
             centerTitle: true,
             actions: [
               BtnIcon(
@@ -49,38 +52,35 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Gần đây",
-                    style: AppTextStyle.lable(),
-                  ),
-                  AlbumCard(
-                    data: AlbumModel(
-                      coverImage: 'assets/images/miku_study.jpg',
-                      title: 'Học tập',
-                    ),
-                    
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    "Chủ Đề",
-                    style: AppTextStyle.lable(),
-                  ),
+                  // Text(
+                  //   "Gần đây",
+                  //   style: AppTextStyle.lable(),
+                  // ),
+                  // AlbumCard(
+                  //   data: AlbumModel(
+                  //     coverImage: 'assets/images/miku_study.jpg',
+                  //     title: 'Học tập',
+                  //   ),
+                  // ),
+                  // const SizedBox(height: 16),
+                  // Text(
+                  //   "Chủ Đề",
+                  //   style: AppTextStyle.lable(),
+                  // ),
                   Expanded(
                     child: ListView.separated(
                       // physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
+                        final item = localHive.albumBox.getAt(index);
                         return BackgroundAlbumCard(
                           height: 100,
-                          data: AlbumModel(
-                            coverImage: 'assets/images/miku_study.jpg',
-                            title: 'Học tập',
-                          ),
+                          data: item,
                         );
                       },
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 4),
-                      itemCount: 3,
+                      itemCount: localHive.albumBox.length,
                     ),
                   )
                 ],

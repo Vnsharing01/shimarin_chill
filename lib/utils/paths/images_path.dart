@@ -1,5 +1,7 @@
 const _imagePath = "assets/images";
 
+const dfImg = "$_imagePath/study_001.png";
+
 final imgsUrl = [
   "$_imagePath/anime_chill_001.jpg",
   "$_imagePath/anime_chill_002.jpg",

@@ -15,7 +15,7 @@ class SoundModel extends HiveObject {
   final String? filePath; // url sound file
 
   @HiveField(3)
-  final Duration? duration; // thời gian chạy đếm ngược
+  final int? duration; // thời gian chạy đếm ngược
 
   @HiveField(4)
   final String? coverImage; // Ảnh bìa sound
@@ -24,7 +24,7 @@ class SoundModel extends HiveObject {
   final List<String>? albumIds;
 
   @HiveField(7)
-  final List<SoundTagEnum>? tags; // Chủ đề như: ["chill", "tập trung"]
+  final List<String>? tags; // Chủ đề như: ["chill", "tập trung"]
 
   SoundModel({
     this.id,
