@@ -1,5 +1,4 @@
 import 'package:hive_flutter/adapters.dart';
-import 'package:shimarin_chill/utils/enum/sound_tag_enum.dart';
 
 part 'album_model.g.dart';
 

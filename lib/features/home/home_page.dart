@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shimarin_chill/data/locals/local_hive.dart';
-import 'package:shimarin_chill/data/models/album_model.dart';
 import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
+import 'package:shimarin_chill/features/playlist_detail/playlist_detail_page.dart';
 import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/enum/load_status.dart';
 import 'package:shimarin_chill/widgets/button/btn_icon.dart';
-import 'package:shimarin_chill/widgets/card/album_card.dart';
 import 'package:shimarin_chill/widgets/card/background_album_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,11 +19,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    final bloc = context.read<HomeBloc>();
+    if (bloc.state.loadStatus == LoadStatus.loading ||
+        bloc.state.loadStatus == LoadStatus.initial) {
+      context.read<HomeBloc>().add(AddPlaylist());
+    }
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final localHive = LocalHive();
     return BlocConsumer<HomeBloc, HomeState>(
       listener: (context, state) {},
       builder: (context, state) {
+        if ((state.loadStatus == LoadStatus.loading ||
+            state.loadStatus == LoadStatus.initial)) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
         return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
@@ -52,35 +68,25 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Text(
-                  //   "Gần đây",
-                  //   style: AppTextStyle.lable(),
-                  // ),
-                  // AlbumCard(
-                  //   data: AlbumModel(
-                  //     coverImage: 'assets/images/miku_study.jpg',
-                  //     title: 'Học tập',
-                  //   ),
-                  // ),
-                  // const SizedBox(height: 16),
-                  // Text(
-                  //   "Chủ Đề",
-                  //   style: AppTextStyle.lable(),
-                  // ),
                   Expanded(
                     child: ListView.separated(
-                      // physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        final item = localHive.albumBox.getAt(index);
+                        final item = state.albums?[index];
                         return BackgroundAlbumCard(
                           height: 100,
                           data: item,
+                          onTap: () {
+                            context.push(RouterPath.playlistDetail,
+                                extra: DetailArguments(
+                                  albumId: item?.id ?? '',
+                                ));
+                          },
                         );
                       },
                       separatorBuilder: (context, index) =>
                           const SizedBox(height: 4),
-                      itemCount: localHive.albumBox.length,
+                      itemCount: state.albums?.length ?? 0,
                     ),
                   )
                 ],

@@ -5,12 +5,12 @@ class HomeState extends Equatable {
   final List<AlbumModel>? albums;
 
   const HomeState({
-    this.loadStatus,
+    this.loadStatus = LoadStatus.initial,
     this.albums,
   });
 
   HomeState copyWith({
-    LoadStatus? loadStatus,
+    LoadStatus? loadStatus = LoadStatus.initial,
     List<AlbumModel>? albums,
   }) {
     return HomeState(
