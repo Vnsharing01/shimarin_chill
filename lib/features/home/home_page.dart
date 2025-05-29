@@ -5,8 +5,8 @@ import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
 import 'package:shimarin_chill/features/playlist_detail/playlist_detail_page.dart';
 import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
-import 'package:shimarin_chill/utils/app_text_style.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
+import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 import 'package:shimarin_chill/widgets/button/btn_icon.dart';
 import 'package:shimarin_chill/widgets/card/background_album_card.dart';
 
@@ -43,13 +43,8 @@ class _HomePageState extends State<HomePage> {
         }
         return Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            title: Text(
-              "Shimarin Chill",
-              style: AppTextStyle.title(),
-            ),
-            backgroundColor: Colors.yellow,
-            centerTitle: true,
+          appBar: dfAppBar(
+            title: "Shimarin Chill",
             actions: [
               BtnIcon(
                 onTap: () {
@@ -65,31 +60,23 @@ class _HomePageState extends State<HomePage> {
                 vertical: 24,
                 horizontal: 16,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: ListView.separated(
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        final item = state.albums?[index];
-                        return BackgroundAlbumCard(
-                          height: 100,
-                          data: item,
-                          onTap: () {
-                            context.push(RouterPath.playlistDetail,
-                                extra: DetailArguments(
-                                  albumId: item?.id ?? '',
-                                ));
-                          },
-                        );
-                      },
-                      separatorBuilder: (context, index) =>
-                          const SizedBox(height: 4),
-                      itemCount: state.albums?.length ?? 0,
-                    ),
-                  )
-                ],
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  final item = state.albums?[index];
+                  return BackgroundAlbumCard(
+                    height: 100,
+                    data: item,
+                    onTap: () {
+                      context.push(RouterPath.playlistDetail,
+                          extra: DetailArguments(
+                            albumId: item?.id ?? '',
+                          ));
+                    },
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(height: 4),
+                itemCount: state.albums?.length ?? 0,
               ),
             ),
           ),

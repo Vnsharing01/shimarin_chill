@@ -34,6 +34,10 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         theme: ThemeData(
+          appBarTheme: const AppBarTheme(
+            backgroundColor: Colors.transparent,
+            scrolledUnderElevation: 0,
+          ),
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.orangeAccent,
           ),

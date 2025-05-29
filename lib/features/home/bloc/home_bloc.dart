@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimarin_chill/data/locals/local_hive.dart';
@@ -13,23 +12,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final localHive = LocalHive();
     on<AddPlaylist>((event, emit) async {
       emit(
-        HomeState().copyWith(
+        const HomeState().copyWith(
           loadStatus: LoadStatus.loading,
         ),
       );
-      log("${state.loadStatus}");
       final listAlbum = localHive.albumBox.values.toList();
       if (listAlbum.isNotEmpty) {
         await Future.delayed(
           const Duration(milliseconds: 1500),
           () {
             emit(
-              HomeState().copyWith(
+              const HomeState().copyWith(
                 loadStatus: LoadStatus.success,
                 albums: listAlbum,
               ),
             );
-            log("${state.loadStatus}");
           },
         );
       }
