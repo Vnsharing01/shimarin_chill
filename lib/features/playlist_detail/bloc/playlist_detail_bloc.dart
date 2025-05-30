@@ -12,7 +12,7 @@ class PlaylistDetailBloc
     extends Bloc<PlaylistDetailEvent, PlaylistDetailState> {
   PlaylistDetailBloc() : super(const PlaylistDetailState()) {
     final hiveDB = LocalHive();
-    on<GetAlbumData>((event, emit) {
+    on<GetAlbumData>((event, emit) async {
       emit(
         const PlaylistDetailState().copyWith(
           loadStatus: LoadStatus.loading,
@@ -24,15 +24,29 @@ class PlaylistDetailBloc
           )
           .single;
 
-      emit(
-        const PlaylistDetailState().copyWith(
-          loadStatus: LoadStatus.success,
-          data: data,
-        ),
-      );
-    });
-    on<GetListSounds>((event, emit) {
-      // TODO: implement event handler
+      if (data.isInBox) {
+        List<SoundModel> listMusic = [];
+
+        for (String id in data.soundIds ?? []) {
+          final sound = hiveDB.soundBox.values.singleWhere(
+            (element) => element.id == id,
+          );
+          listMusic.add(sound);
+        }
+
+        await Future.delayed(
+          const Duration(milliseconds: 1500),
+          () {
+            emit(
+              const PlaylistDetailState().copyWith(
+                loadStatus: LoadStatus.success,
+                data: data,
+                sounds: listMusic,
+              ),
+            );
+          },
+        );
+      }
     });
   }
 }

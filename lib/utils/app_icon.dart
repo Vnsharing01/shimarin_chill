@@ -10,4 +10,5 @@ class AppIcons {
   static final IconData info = PhosphorIcons.info();
   static final IconData dark = PhosphorIcons.moon();
   static final IconData light = PhosphorIcons.sun();
+  static final IconData back = PhosphorIcons.arrowLeft();
 }

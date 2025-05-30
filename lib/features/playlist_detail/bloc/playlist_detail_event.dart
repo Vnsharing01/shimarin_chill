@@ -9,11 +9,3 @@ class GetAlbumData extends PlaylistDetailEvent {
     required this.albumId,
   });
 }
-
-class GetListSounds extends PlaylistDetailEvent {
-  final List<String> soundIds;
-
-  GetListSounds({
-    required this.soundIds,
-  });
-}
