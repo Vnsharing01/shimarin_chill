@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/features/playlist_detail/bloc/playlist_detail_bloc.dart';
+import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/enum/load_status.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 
@@ -30,19 +33,20 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
   late TabController _tabController;
 
   @override
-  void initState() async {
-    final bloc = context.read<PlaylistDetailBloc>();
+  void initState() {
     _tabController = TabController(length: 2, vsync: this);
-    bloc.add(GetAlbumData(albumId: widget.arguments!.albumId));
-    await Future(
-      () {
-        if (bloc.state.data != null &&
-            (bloc.state.data?.soundIds ?? []).isNotEmpty) {
-          bloc.add(GetListSounds(soundIds: bloc.state.data?.soundIds ?? []));
-        }
-      },
-    );
+    getDataSounds();
     super.initState();
+  }
+
+  Future getDataSounds() async {
+    final bloc = context.read<PlaylistDetailBloc>();
+
+    await Future(
+      () => bloc.add(
+        GetAlbumData(albumId: widget.arguments!.albumId),
+      ),
+    );
   }
 
   @override
@@ -56,102 +60,211 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
     return BlocConsumer<PlaylistDetailBloc, PlaylistDetailState>(
       listener: (context, state) {},
       builder: (context, state) {
-        return Scaffold(
-          appBar: dfAppBar(title: 'Chill Detail'),
-          body: SafeArea(
-              child: SingleChildScrollView(
-            child: Column(
+        if ((state.loadStatus == LoadStatus.loading ||
+            state.loadStatus == LoadStatus.initial)) {
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+        return SafeArea(
+          child: Scaffold(
+            appBar: iconWhiteAppBar(
+              context: context,
+              title: state.data?.title ?? '',
+              txtStyle: AppTextStyle.title(color: Colors.white),
+            ),
+            extendBodyBehindAppBar: true,
+            body: Stack(
+              fit: StackFit.expand,
               children: [
-                SizedBox(
-                  height: 200,
-                  child: Stack(
+                MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  child: Column(
                     children: [
-                      Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(imgsUrl.first),
-                            fit: BoxFit.fill,
-                            opacity: 0.5,
+                      _buildInfoView(state),
+                      TabBar(
+                        controller: _tabController,
+                        tabs: const [
+                          Tab(
+                            text: 'hẹn giờ',
                           ),
-                        ),
+                          Tab(
+                            text: 'danh sách nhạc',
+                          ),
+                        ],
                       ),
-                      Container(
-                        height: 200,
-                        decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.4),
-                        ),
-                      ),
-                      Positioned.fill(
-                          child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Row(
+                      Expanded(
+                        child: TabBarView(
+                          controller: _tabController,
                           children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
-                                      blurRadius: 6,
-                                      offset: const Offset(0, 4),
-                                    ),
-                                  ]),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(16),
-                                child: Image.asset(
-                                  imgsUrl.first,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
+                            Center(
+                              child: Text('Hẹn giờ'),
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  "Hãy bật playlist này khi bạn cần tập trung làm việc hoặc học bài. Bạn sẽ bất giác gật gù theo điệu nhạc đấy. Những giai điệu hip hop đầy cảm xúc này vừa giúp bạn tập trung, vừa thêm chút groove tinh tế.",
-                                  softWrap: true,
-                                  style: AppTextStyle.body14(
-                                    color: Colors.white,
-                                  ),
-                                ),
+                            SizedBox(
+                              child: ListView.separated(
+                                itemBuilder: (context, index) {
+                                  final item = (state.sounds ?? [])[index];
+                                  return _buildItemAlbumsView(
+                                    item,
+                                    context: context,
+                                  );
+                                },
+                                separatorBuilder: (context, index) =>
+                                    const SizedBox.shrink(),
+                                itemCount: (state.sounds ?? []).length,
                               ),
                             ),
                           ],
                         ),
-                      )),
+                      )
                     ],
                   ),
                 ),
-                TabBar(
-                  controller: _tabController,
-                  tabs: const [
-                    Tab(
-                      text: 'hẹn giờ',
+                Positioned(
+                  bottom: 16,
+                  left: 0,
+                  right: 0,
+                  child: InkWell(
+                    onTap: () {
+                      // chuyển màn play nhạc
+                    },
+                    child: CircleAvatar(
+                      radius: 36,
+                      child: Icon(
+                        AppIcons.play,
+                        size: 32,
+                      ),
                     ),
-                    Tab(
-                      text: 'danh sách nhạc',
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 525,
-                  child: TabBarView(
-                    controller: _tabController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: const [
-                      Center(child: Text("Chill")),
-                      Center(child: Text("Focus")),
-                    ],
                   ),
-                )
+                ),
               ],
             ),
-          )),
+          ),
         );
       },
+    );
+  }
+
+  Widget _buildInfoDialog(SoundModel item) {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        height: 100,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(
+              item.title ?? '',
+              softWrap: true,
+              maxLines: 2,
+            ),
+            Text(
+              Duration(
+                minutes: item.duration ?? 0,
+              ).toString(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildItemAlbumsView(
+    SoundModel item, {
+    required BuildContext context,
+  }) {
+    return ListTile(
+      title: Text(item.title ?? ''),
+      subtitle: Text(
+        Duration(minutes: item.duration ?? 0).toString(),
+      ),
+      leading: CircleAvatar(
+        child: Icon(
+          AppIcons.musicNote,
+        ),
+      ),
+      onTap: () {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return _buildInfoDialog(item);
+          },
+        );
+      },
+    );
+  }
+
+  Widget _buildInfoView(PlaylistDetailState state) {
+    return SizedBox(
+      height: 200,
+      child: Stack(
+        children: [
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(state.data?.coverImage ?? imgsUrl.first),
+                fit: BoxFit.fill,
+                opacity: 0.5,
+              ),
+            ),
+          ),
+          Container(
+            height: 200,
+            decoration: BoxDecoration(
+              color: Colors.black.withOpacity(0.4),
+            ),
+          ),
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 6,
+                            offset: const Offset(0, 4),
+                          ),
+                        ]),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: Image.asset(
+                        state.data?.coverImage ?? imgsUrl.first,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 100,
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        state.data?.description ?? "",
+                        softWrap: true,
+                        textAlign: TextAlign.start,
+                        style: AppTextStyle.body14(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
