@@ -102,7 +102,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                         child: TabBarView(
                           controller: _tabController,
                           children: [
-                            const DurationTimerView(),
+                             const DurationTimerView(),
                             PlaylistView(
                               sounds: state.sounds,
                             ),

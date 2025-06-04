@@ -14,15 +14,14 @@ class PlaylistDetailBloc
     final hiveDB = LocalHive();
     on<GetAlbumData>((event, emit) async {
       emit(
-        const PlaylistDetailState().copyWith(
+        state.copyWith(
           loadStatus: LoadStatus.loading,
         ),
       );
       final data = hiveDB.albumBox.values
           .where(
             (element) => element.id == event.albumId,
-          )
-          .single;
+          ).single;
 
       if (data.isInBox) {
         List<SoundModel> listMusic = [];
@@ -38,7 +37,7 @@ class PlaylistDetailBloc
           const Duration(milliseconds: 1500),
           () {
             emit(
-              const PlaylistDetailState().copyWith(
+              state.copyWith(
                 loadStatus: LoadStatus.success,
                 data: data,
                 sounds: listMusic,
@@ -48,9 +47,10 @@ class PlaylistDetailBloc
         );
       }
     });
+
     on<ChangedTime>(
       (event, emit) {
-        emit(const PlaylistDetailState().copyWith(
+        emit(state.copyWith(
           timerSelected: event.value,
         ));
       },

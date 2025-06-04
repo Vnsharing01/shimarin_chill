@@ -8,9 +8,11 @@ class BtnRadio extends StatefulWidget {
     required this.selected,
     required this.value,
     this.onTap,
+    this.txtTitle,
   });
   final int selected;
   final int value;
+  final String? txtTitle;
   final void Function(int value)? onTap;
 
   @override
@@ -44,7 +46,7 @@ class _BtnRadioState extends State<BtnRadio> {
               ),
               const SizedBox(width: 8),
               Text(
-                "25 phút",
+                widget.txtTitle ?? "",
                 style: AppTextStyle.body16(),
               ),
             ],

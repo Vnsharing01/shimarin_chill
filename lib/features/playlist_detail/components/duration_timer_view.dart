@@ -21,9 +21,11 @@ class _DurationTimerViewState extends State<DurationTimerView> {
         final bloc = context.read<PlaylistDetailBloc>();
         return Column(
           children: [
+            const SizedBox(height: 16),
             BtnRadio(
               value: 1,
               selected: state.timerSelected,
+              txtTitle: '25 phút',
               onTap: (value) {
                 bloc.add(ChangedTime(
                   value: value,
@@ -33,16 +35,22 @@ class _DurationTimerViewState extends State<DurationTimerView> {
             BtnRadio(
               value: 2,
               selected: state.timerSelected,
-              onTap: (value) { bloc.add(ChangedTime(
+              txtTitle: '35 phút',
+              onTap: (value) {
+                bloc.add(ChangedTime(
                   value: value,
-                ));},
+                ));
+              },
             ),
             BtnRadio(
               value: 3,
               selected: state.timerSelected,
-              onTap: (value) { bloc.add(ChangedTime(
+              txtTitle: '45 phút',
+              onTap: (value) {
+                bloc.add(ChangedTime(
                   value: value,
-                ));},
+                ));
+              },
             ),
           ],
         );
