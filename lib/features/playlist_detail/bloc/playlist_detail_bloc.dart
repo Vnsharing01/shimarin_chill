@@ -48,5 +48,12 @@ class PlaylistDetailBloc
         );
       }
     });
+    on<ChangedTime>(
+      (event, emit) {
+        emit(const PlaylistDetailState().copyWith(
+          timerSelected: event.value,
+        ));
+      },
+    );
   }
 }

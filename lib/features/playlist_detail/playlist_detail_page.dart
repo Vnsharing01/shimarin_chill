@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/features/playlist_detail/bloc/playlist_detail_bloc.dart';
+import 'package:shimarin_chill/features/playlist_detail/components/playlist_view.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
+
+import 'components/duration_timer_view.dart';
 
 class DetailArguments {
   final String albumId;
@@ -100,22 +102,9 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                         child: TabBarView(
                           controller: _tabController,
                           children: [
-                            Center(
-                              child: Text('Hẹn giờ'),
-                            ),
-                            SizedBox(
-                              child: ListView.separated(
-                                itemBuilder: (context, index) {
-                                  final item = (state.sounds ?? [])[index];
-                                  return _buildItemAlbumsView(
-                                    item,
-                                    context: context,
-                                  );
-                                },
-                                separatorBuilder: (context, index) =>
-                                    const SizedBox.shrink(),
-                                itemCount: (state.sounds ?? []).length,
-                              ),
+                            const DurationTimerView(),
+                            PlaylistView(
+                              sounds: state.sounds,
                             ),
                           ],
                         ),
@@ -127,15 +116,23 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                   bottom: 16,
                   left: 0,
                   right: 0,
-                  child: InkWell(
-                    onTap: () {
-                      // chuyển màn play nhạc
-                    },
-                    child: CircleAvatar(
-                      radius: 36,
-                      child: Icon(
-                        AppIcons.play,
-                        size: 32,
+                  child: Material(
+                    shape: const CircleBorder(),
+                    elevation: 1.5,
+                    child: InkWell(
+                      customBorder: const CircleBorder(),
+                      onTap: () {
+                        // chuyển màn play nhạc
+                      },
+                      child: Ink(
+                        padding: const EdgeInsets.all(4),
+                        child: CircleAvatar(
+                          radius: 36,
+                          child: Icon(
+                            AppIcons.play,
+                            size: 32,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -143,57 +140,6 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
               ],
             ),
           ),
-        );
-      },
-    );
-  }
-
-  Widget _buildInfoDialog(SoundModel item) {
-    return Dialog(
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        height: 100,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              item.title ?? '',
-              softWrap: true,
-              maxLines: 2,
-            ),
-            Text(
-              Duration(
-                minutes: item.duration ?? 0,
-              ).toString(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildItemAlbumsView(
-    SoundModel item, {
-    required BuildContext context,
-  }) {
-    return ListTile(
-      title: Text(item.title ?? ''),
-      subtitle: Text(
-        Duration(minutes: item.duration ?? 0).toString(),
-      ),
-      leading: CircleAvatar(
-        child: Icon(
-          AppIcons.musicNote,
-        ),
-      ),
-      onTap: () {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return _buildInfoDialog(item);
-          },
         );
       },
     );

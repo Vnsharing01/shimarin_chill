@@ -11,4 +11,6 @@ class AppIcons {
   static final IconData dark = PhosphorIcons.moon();
   static final IconData light = PhosphorIcons.sun();
   static final IconData back = PhosphorIcons.arrowLeft();
+  static final IconData radioButton = PhosphorIcons.circle();
+  static final IconData radioActive = PhosphorIcons.checkCircle();
 }

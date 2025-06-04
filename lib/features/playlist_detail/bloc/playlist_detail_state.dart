@@ -5,12 +5,14 @@ class PlaylistDetailState extends Equatable {
   final LoadStatus? loadSoundStatus;
   final AlbumModel? data;
   final List<SoundModel>? sounds;
+  final int timerSelected;
 
   const PlaylistDetailState({
     this.loadStatus = LoadStatus.initial,
     this.loadSoundStatus = LoadStatus.initial,
     this.data,
     this.sounds,
+    this.timerSelected = 0,
   });
 
   PlaylistDetailState copyWith({
@@ -18,12 +20,14 @@ class PlaylistDetailState extends Equatable {
     LoadStatus? loadSoundStatus = LoadStatus.initial,
     AlbumModel? data,
     List<SoundModel>? sounds,
+    int? timerSelected,
   }) {
     return PlaylistDetailState(
       loadStatus: loadStatus ?? this.loadStatus,
       loadSoundStatus: loadSoundStatus ?? this.loadSoundStatus,
       data: data ?? this.data,
       sounds: sounds ?? this.sounds,
+      timerSelected: timerSelected ?? this.timerSelected,
     );
   }
 
@@ -33,5 +37,6 @@ class PlaylistDetailState extends Equatable {
         loadSoundStatus,
         data,
         sounds,
+        timerSelected,
       ];
 }

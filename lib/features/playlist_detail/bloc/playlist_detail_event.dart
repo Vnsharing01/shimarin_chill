@@ -9,3 +9,11 @@ class GetAlbumData extends PlaylistDetailEvent {
     required this.albumId,
   });
 }
+
+class ChangedTime extends PlaylistDetailEvent {
+  final int value;
+
+  ChangedTime({
+    required this.value,
+  });
+}
