@@ -12,7 +12,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final localHive = LocalHive();
     on<AddPlaylist>((event, emit) async {
       emit(
-        const HomeState().copyWith(
+        state.copyWith(
           loadStatus: LoadStatus.loading,
         ),
       );
@@ -22,7 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           const Duration(milliseconds: 1500),
           () {
             emit(
-              const HomeState().copyWith(
+              state.copyWith(
                 loadStatus: LoadStatus.success,
                 albums: listAlbum,
               ),

@@ -12,7 +12,7 @@ PreferredSizeWidget dfAppBar({
     AppBar(
       title: Text(
         title,
-        style: txtStyle ?? AppTextStyle.title(),
+        style: txtStyle ?? AppTextStyle.lable(),
       ),
       backgroundColor: Colors.transparent,
       centerTitle: true,
@@ -29,7 +29,7 @@ PreferredSizeWidget iconWhiteAppBar({
     AppBar(
       title: Text(
         title,
-        style: txtStyle ?? AppTextStyle.title(),
+        style: txtStyle ?? AppTextStyle.lable(),
       ),
       backgroundColor: Colors.transparent,
       centerTitle: true,

@@ -52,6 +52,16 @@ class _DurationTimerViewState extends State<DurationTimerView> {
                 ));
               },
             ),
+            BtnRadio(
+              value: 0,
+              selected: state.timerSelected,
+              txtTitle: 'Không hẹn giờ',
+              onTap: (value) {
+                bloc.add(ChangedTime(
+                  value: value,
+                ));
+              },
+            ),
           ],
         );
       },

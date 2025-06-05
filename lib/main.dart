@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomeBloc(),
       child: MaterialApp.router(
-        title: 'Flutter Demo',
+        title: 'Shimarin Chill',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           appBarTheme: const AppBarTheme(
             backgroundColor: Colors.transparent,

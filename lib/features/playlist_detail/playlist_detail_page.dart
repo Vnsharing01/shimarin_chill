@@ -62,8 +62,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
     return BlocConsumer<PlaylistDetailBloc, PlaylistDetailState>(
       listener: (context, state) {},
       builder: (context, state) {
-        if ((state.loadStatus == LoadStatus.loading ||
-            state.loadStatus == LoadStatus.initial)) {
+        if ((state.loadStatus == LoadStatus.loading)) {
           return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
@@ -75,7 +74,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
             appBar: iconWhiteAppBar(
               context: context,
               title: state.data?.title ?? '',
-              txtStyle: AppTextStyle.title(color: Colors.white),
+              txtStyle: AppTextStyle.lable(color: Colors.white),
             ),
             extendBodyBehindAppBar: true,
             body: Stack(

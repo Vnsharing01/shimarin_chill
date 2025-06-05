@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -11,24 +11,22 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Setting",
-          style: AppTextStyle.title(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: dfAppBar(
+          title: "Setting",
         ),
-        centerTitle: true,
+        body: SafeArea(
+            child: Container(
+          padding: const EdgeInsets.symmetric(
+            vertical: 24,
+            horizontal: 16,
+          ),
+          child: const Column(
+            children: [],
+          ),
+        )),
       ),
-      body: SafeArea(
-          child: Container(
-        padding: const EdgeInsets.symmetric(
-          vertical: 24,
-          horizontal: 16,
-        ),
-        child: const Column(
-          children: [],
-        ),
-      )),
     );
   }
 }

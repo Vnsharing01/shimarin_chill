@@ -41,21 +41,21 @@ class _HomePageState extends State<HomePage> {
             ),
           );
         }
-        return Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: dfAppBar(
-            title: "Shimarin Chill",
-            actions: [
-              BtnIcon(
-                onTap: () {
-                  context.push(RouterPath.setting);
-                },
-                icon: AppIcons.setting,
-              )
-            ],
-          ),
-          body: SafeArea(
-            child: Padding(
+        return SafeArea(
+          child: Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: dfAppBar(
+              title: "Shimarin Chill",
+              actions: [
+                BtnIcon(
+                  onTap: () {
+                    context.push(RouterPath.setting);
+                  },
+                  icon: AppIcons.setting,
+                )
+              ],
+            ),
+            body: Padding(
               padding: const EdgeInsets.symmetric(
                 vertical: 24,
                 horizontal: 16,
