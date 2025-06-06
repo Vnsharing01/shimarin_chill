@@ -1,4 +1,11 @@
 part of 'setting_bloc.dart';
 
-@immutable
-sealed class SettingEvent {}
+abstract class SettingEvent {}
+
+class ChangedModeApp extends SettingEvent{
+  final bool isChanged;
+
+  ChangedModeApp({
+    required this.isChanged,
+  });
+}

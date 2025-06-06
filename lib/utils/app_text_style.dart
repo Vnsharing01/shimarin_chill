@@ -27,7 +27,6 @@ class AppTextStyle {
 
   static TextStyle body16({
     Color? color,
-    double? size,
   }) {
     return TextStyle(
       fontSize: 16,
@@ -39,7 +38,6 @@ class AppTextStyle {
 
   static TextStyle body14({
     Color? color,
-    double? size,
   }) {
     return TextStyle(
       fontSize: 14,
@@ -51,7 +49,6 @@ class AppTextStyle {
 
   static TextStyle body12({
     Color? color,
-    double? size,
   }) {
     return TextStyle(
       fontSize: 12,

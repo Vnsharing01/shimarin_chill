@@ -1,6 +1,20 @@
 part of 'setting_bloc.dart';
 
-@immutable
-sealed class SettingState {}
+class SettingState extends Equatable {
+  final bool isDarkMode;
 
-final class SettingInitial extends SettingState {}
+  const SettingState({
+    this.isDarkMode = false,
+  });
+
+  SettingState copyWith({bool? isDarkMode}) {
+    return SettingState(
+      isDarkMode: isDarkMode ?? this.isDarkMode,
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+        isDarkMode,
+      ];
+}
