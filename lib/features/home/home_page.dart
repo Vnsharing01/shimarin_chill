@@ -43,7 +43,6 @@ class _HomePageState extends State<HomePage> {
         }
         return SafeArea(
           child: Scaffold(
-            extendBodyBehindAppBar: true,
             appBar: dfAppBar(
               title: "Shimarin Chill",
               actions: [

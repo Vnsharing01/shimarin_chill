@@ -4,6 +4,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:shimarin_chill/features/setting/bloc/setting_bloc.dart';
 import 'package:shimarin_chill/features/setting/components/setting_item_view.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
+import 'package:shimarin_chill/utils/app_text_style.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 
 class SettingPage extends StatefulWidget {
@@ -18,13 +19,12 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
     return BlocConsumer<SettingBloc, SettingState>(
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
             appBar: dfAppBar(
-              title: "Setting",
+              title: "Cài Đặt",
             ),
             body: SafeArea(
                 child: Container(
@@ -34,9 +34,6 @@ class _SettingPageState extends State<SettingPage> {
               ),
               child: Column(
                 children: [
-                  // button chuyển dark light
-                  // button show dialog thông tin giới thiệu app
-                  // button link chia sẻ app
                   SettingItemView(
                     title: 'Dark mode',
                     icon: FlutterSwitch(
@@ -64,7 +61,12 @@ class _SettingPageState extends State<SettingPage> {
                   SettingItemView(
                     title: 'Giới thiệu chung',
                     icon: Icon(AppIcons.info),
-                    onTap: () {},
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => _infoAppPopup(),
+                      );
+                    },
                   ),
                   const SizedBox(height: 16),
                   SettingItemView(
@@ -78,6 +80,24 @@ class _SettingPageState extends State<SettingPage> {
           ),
         );
       },
+    );
+  }
+
+  Widget _infoAppPopup() {
+    return AlertDialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      title: Text(
+        'Thông tin chung',
+        textAlign: TextAlign.center,
+        style: AppTextStyle.lable(),
+      ),
+      content: Text(
+        'Ứng dụng Shimarin chill tổng hợp những bản nhạc lo-fi không lời từ pixabay.com. \nCác bản nhạc được tổng hợp theo chủ đề thích hợp cho tập trung trong công việc, học tập và thư giãn.',
+        softWrap: true,
+        style: AppTextStyle.body14(),
+      ),
     );
   }
 }
