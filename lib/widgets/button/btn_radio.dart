@@ -41,7 +41,7 @@ class _BtnRadioState extends State<BtnRadio> {
                     ? AppIcons.radioButton
                     : AppIcons.radioActive,
                 color: thisValue != widget.selected
-                    ? Theme.of(context).primaryColor
+                    ? Theme.of(context).dividerColor
                     : Colors.green,
               ),
               const SizedBox(width: 8),

@@ -1,13 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimarin_chill/bloc/app_bloc.dart';
 import 'package:shimarin_chill/data/locals/local_hive.dart';
 import 'package:shimarin_chill/data/models/album_model.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
+import 'package:shimarin_chill/features/setting/bloc/setting_bloc.dart';
 import 'package:shimarin_chill/routes/routes.dart';
+import 'package:shimarin_chill/utils/constants.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+
+  getIt.registerSingleton<SharedPreferences>(prefs);
+
   await Hive.initFlutter();
   Hive.registerAdapter(SoundModelAdapter());
   Hive.registerAdapter(AlbumModelAdapter());
@@ -24,27 +33,45 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({
+    super.key,
+  });
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeBloc(),
-      child: MaterialApp.router(
-        title: 'Shimarin Chill',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent,
-            scrolledUnderElevation: 0,
-          ),
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.orangeAccent,
-          ),
-          useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AppBloc(),
         ),
-        routerConfig: appRouter,
+        BlocProvider(
+          create: (context) => HomeBloc(),
+        ),
+        BlocProvider(
+          create: (context) => SettingBloc(),
+        )
+      ],
+      child: BlocBuilder<AppBloc, AppState>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            title: 'Shimarin Chill',
+            debugShowCheckedModeBanner: false,
+            darkTheme: ThemeData.dark(),
+            themeMode:
+                state.isDarkMode ?? false ? ThemeMode.dark : ThemeMode.light,
+            theme: ThemeData(
+              appBarTheme: const AppBarTheme(
+                backgroundColor: Colors.transparent,
+                scrolledUnderElevation: 0,
+              ),
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.orangeAccent,
+              ),
+              useMaterial3: true,
+            ),
+            routerConfig: appRouter,
+          );
+        },
       ),
     );
   }

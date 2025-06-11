@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:shimarin_chill/bloc/app_bloc.dart';
 import 'package:shimarin_chill/features/setting/bloc/setting_bloc.dart';
 import 'package:shimarin_chill/features/setting/components/setting_item_view.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
@@ -18,7 +19,15 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SettingBloc, SettingState>(
-      listener: (context, state) {
+      listener: (context, state) {},
+      listenWhen: (previous, current) {
+        if (!(previous.isDarkMode != current.isDarkMode)) {
+          return false;
+        }
+        context.read<AppBloc>().add(
+              ChangedThemeMode(isChanged: current.isDarkMode),
+            );
+        return true;
       },
       builder: (context, state) {
         return SafeArea(
@@ -50,7 +59,7 @@ class _SettingPageState extends State<SettingPage> {
                         AppIcons.light,
                         color: Colors.amber,
                       ),
-                      onToggle: (value) {
+                      onToggle: (value) async {
                         context.read<SettingBloc>().add(
                               ChangedModeApp(isChanged: value),
                             );
