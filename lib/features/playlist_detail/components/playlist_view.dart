@@ -37,7 +37,9 @@ class _PlaylistViewState extends State<PlaylistView> {
     return ListTile(
       title: Text(item.title ?? ''),
       subtitle: Text(
-        Duration(minutes: item.duration ?? 0).toString(),
+        formatDurationMMSS(
+          Duration(minutes: item.duration ?? 0),
+        ),
       ),
       leading: CircleAvatar(
         child: Icon(
@@ -79,5 +81,13 @@ class _PlaylistViewState extends State<PlaylistView> {
         ),
       ),
     );
+  }
+
+  String formatDurationMMSS(Duration duration) {
+    final minutes = duration.inHours.remainder(60);
+    final seconds = duration.inMinutes.remainder(60);
+
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    return '${twoDigits(minutes)}:${twoDigits(seconds)}';
   }
 }

@@ -67,6 +67,7 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(
                 seedColor: Colors.orangeAccent,
               ),
+              primaryColor: Colors.orangeAccent,
               useMaterial3: true,
             ),
             routerConfig: appRouter,
