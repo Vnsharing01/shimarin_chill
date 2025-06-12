@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTextStyle {
   static TextStyle lable({
@@ -10,6 +11,8 @@ class AppTextStyle {
       fontWeight: FontWeight.w700,
       color: color,
       height: 1.2,
+      decoration: TextDecoration.none,
+      fontFamily: GoogleFonts.poppins().fontFamily,
     );
   }
 
@@ -22,6 +25,8 @@ class AppTextStyle {
       fontWeight: FontWeight.w700,
       color: color,
       height: 1.2,
+      decoration: TextDecoration.none,
+      fontFamily: GoogleFonts.poppins().fontFamily,
     );
   }
 
@@ -33,6 +38,8 @@ class AppTextStyle {
       fontWeight: FontWeight.w400,
       color: color,
       height: 1.2,
+      decoration: TextDecoration.none,
+      fontFamily: GoogleFonts.poppins().fontFamily,
     );
   }
 
@@ -44,6 +51,8 @@ class AppTextStyle {
       fontWeight: FontWeight.w400,
       color: color,
       height: 1.2,
+      decoration: TextDecoration.none,
+      fontFamily: GoogleFonts.poppins().fontFamily,
     );
   }
 
@@ -55,6 +64,22 @@ class AppTextStyle {
       fontWeight: FontWeight.w400,
       color: color,
       height: 1.2,
+      decoration: TextDecoration.none,
+      fontFamily: GoogleFonts.poppins().fontFamily,
+    );
+  }
+
+  static TextStyle timeDuration({
+    Color? color,
+    double? size,
+  }) {
+    return TextStyle(
+      fontSize: size ?? 36,
+      fontWeight: FontWeight.bold,
+      color: color,
+      height: 1.2,
+      decoration: TextDecoration.none,
+      fontFamily: GoogleFonts.comfortaa().fontFamily,
     );
   }
 }

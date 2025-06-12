@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimarin_chill/features/playlist_detail/bloc/playlist_detail_bloc.dart';
 import 'package:shimarin_chill/features/playlist_detail/components/playlist_view.dart';
+import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
@@ -88,12 +90,18 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                       _buildInfoView(state),
                       TabBar(
                         controller: _tabController,
-                        tabs: const [
+                        tabs: [
                           Tab(
-                            text: 'hẹn giờ',
+                            child: Text(
+                              'Hẹn giờ',
+                              style: AppTextStyle.title(),
+                            ),
                           ),
                           Tab(
-                            text: 'danh sách nhạc',
+                            child: Text(
+                              'Danh sách nhạc',
+                              style: AppTextStyle.title(),
+                            ),
                           ),
                         ],
                       ),
@@ -101,7 +109,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                         child: TabBarView(
                           controller: _tabController,
                           children: [
-                             const DurationTimerView(),
+                            const DurationTimerView(),
                             PlaylistView(
                               sounds: state.sounds,
                             ),
@@ -122,6 +130,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                       customBorder: const CircleBorder(),
                       onTap: () {
                         // chuyển màn play nhạc
+                        context.push(RouterPath.musicPlay);
                       },
                       child: Ink(
                         padding: const EdgeInsets.all(4),

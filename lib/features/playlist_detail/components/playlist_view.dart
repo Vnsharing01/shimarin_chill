@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
+import 'package:shimarin_chill/utils/app_text_style.dart';
 
 class PlaylistView extends StatefulWidget {
   const PlaylistView({
@@ -35,7 +36,12 @@ class _PlaylistViewState extends State<PlaylistView> {
     required BuildContext context,
   }) {
     return ListTile(
-      title: Text(item.title ?? ''),
+      title: Text(
+        item.title ?? '',
+        style: AppTextStyle.body16().copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+      ),
       subtitle: Text(
         formatDurationMMSS(
           Duration(minutes: item.duration ?? 0),
@@ -59,6 +65,9 @@ class _PlaylistViewState extends State<PlaylistView> {
 
   Widget _buildInfoDialog(SoundModel item) {
     return Dialog(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
       child: Container(
         padding: const EdgeInsets.all(16),
         height: 100,
@@ -71,11 +80,13 @@ class _PlaylistViewState extends State<PlaylistView> {
               item.title ?? '',
               softWrap: true,
               maxLines: 2,
+              style: AppTextStyle.body16(),
             ),
             Text(
-              Duration(
-                minutes: item.duration ?? 0,
-              ).toString(),
+              formatDurationMMSS(
+                Duration(minutes: item.duration ?? 0),
+              ),
+              style: AppTextStyle.body14(),
             ),
           ],
         ),
