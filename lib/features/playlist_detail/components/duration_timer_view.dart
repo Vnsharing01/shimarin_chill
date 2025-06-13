@@ -16,7 +16,6 @@ class _DurationTimerViewState extends State<DurationTimerView> {
   Widget build(BuildContext context) {
     return BlocConsumer<PlaylistDetailBloc, PlaylistDetailState>(
       listener: (context, state) {
-        // TODO: implement listener
       },
       builder: (context, state) {
         final bloc = context.read<PlaylistDetailBloc>();
