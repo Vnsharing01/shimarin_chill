@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shimarin_chill/features/music_play/music_play_page.dart';
 import 'package:shimarin_chill/features/playlist_detail/bloc/playlist_detail_bloc.dart';
 import 'package:shimarin_chill/features/playlist_detail/components/playlist_view.dart';
 import 'package:shimarin_chill/routes/router_path.dart';
@@ -129,8 +130,11 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                     child: InkWell(
                       customBorder: const CircleBorder(),
                       onTap: () {
-                        // chuyển màn play nhạc
-                        context.push(RouterPath.musicPlay);
+                        context.push(RouterPath.musicPlay,
+                            extra: PlayArguments(
+                              durationSelected: state.timerSelected,
+                              sounds: state.sounds ?? [],
+                            ));
                       },
                       child: Ink(
                         padding: const EdgeInsets.all(4),

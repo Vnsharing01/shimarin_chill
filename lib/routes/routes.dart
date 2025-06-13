@@ -46,7 +46,9 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         return BlocProvider(
           create: (_) => MusicPlayBloc(),
-          child: const MusicPlayPage(),
+          child: MusicPlayPage(
+            arguments: state.extra as PlayArguments,
+          ),
         );
       },
     ),

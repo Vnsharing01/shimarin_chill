@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimarin_chill/features/playlist_detail/bloc/playlist_detail_bloc.dart';
+import 'package:shimarin_chill/utils/enum/play_duration_enum.dart';
 import 'package:shimarin_chill/widgets/button/btn_radio.dart';
 
 class DurationTimerView extends StatefulWidget {
@@ -25,7 +26,7 @@ class _DurationTimerViewState extends State<DurationTimerView> {
             BtnRadio(
               value: 1,
               selected: state.timerSelected,
-              txtTitle: '25 phút',
+              txtTitle: PlayDurationEnum.minutes25.title,
               onTap: (value) {
                 bloc.add(ChangedTime(
                   value: value,
@@ -35,7 +36,7 @@ class _DurationTimerViewState extends State<DurationTimerView> {
             BtnRadio(
               value: 2,
               selected: state.timerSelected,
-              txtTitle: '35 phút',
+              txtTitle: PlayDurationEnum.minutes35.title,
               onTap: (value) {
                 bloc.add(ChangedTime(
                   value: value,
@@ -45,7 +46,7 @@ class _DurationTimerViewState extends State<DurationTimerView> {
             BtnRadio(
               value: 3,
               selected: state.timerSelected,
-              txtTitle: '45 phút',
+              txtTitle: PlayDurationEnum.minutes45.title,
               onTap: (value) {
                 bloc.add(ChangedTime(
                   value: value,
@@ -55,7 +56,7 @@ class _DurationTimerViewState extends State<DurationTimerView> {
             BtnRadio(
               value: 0,
               selected: state.timerSelected,
-              txtTitle: 'Không hẹn giờ',
+              txtTitle: PlayDurationEnum.none.title,
               onTap: (value) {
                 bloc.add(ChangedTime(
                   value: value,

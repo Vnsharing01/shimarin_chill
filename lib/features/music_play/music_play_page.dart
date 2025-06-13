@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 
+class PlayArguments {
+  final int durationSelected; 
+  final List<SoundModel> sounds; 
+
+  PlayArguments({
+    required this.durationSelected,
+    required this.sounds,
+  });
+}
+
 class MusicPlayPage extends StatefulWidget {
-  const MusicPlayPage({super.key});
+  const MusicPlayPage({
+    super.key,
+    this.arguments,
+  });
+
+  final PlayArguments? arguments;
 
   @override
   State<MusicPlayPage> createState() => _MusicPlayPageState();
