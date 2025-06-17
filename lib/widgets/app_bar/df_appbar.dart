@@ -25,6 +25,7 @@ PreferredSizeWidget iconWhiteAppBar({
   required String title,
   List<Widget>? actions,
   TextStyle? txtStyle,
+  void Function()? onBack,
 }) =>
     AppBar(
       title: Text(
@@ -39,6 +40,7 @@ PreferredSizeWidget iconWhiteAppBar({
       leading: context.canPop()
           ? BtnIcon(
               onTap: () {
+                onBack!.call();
                 context.pop();
               },
               icon: AppIcons.back,

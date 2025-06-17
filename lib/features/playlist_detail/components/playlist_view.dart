@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/formats/formats_time.dart';
 
 class PlaylistView extends StatefulWidget {
   const PlaylistView({
@@ -92,13 +93,5 @@ class _PlaylistViewState extends State<PlaylistView> {
         ),
       ),
     );
-  }
-
-  String formatDurationMMSS(Duration duration) {
-    final minutes = duration.inHours.remainder(60);
-    final seconds = duration.inMinutes.remainder(60);
-
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    return '${twoDigits(minutes)}:${twoDigits(seconds)}';
   }
 }
