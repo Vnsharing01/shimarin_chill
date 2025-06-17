@@ -40,7 +40,7 @@ PreferredSizeWidget iconWhiteAppBar({
       leading: context.canPop()
           ? BtnIcon(
               onTap: () {
-                onBack!.call();
+                onBack?.call();
                 context.pop();
               },
               icon: AppIcons.back,

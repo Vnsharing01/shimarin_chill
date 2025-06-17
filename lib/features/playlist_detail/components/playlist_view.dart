@@ -85,7 +85,7 @@ class _PlaylistViewState extends State<PlaylistView> {
             ),
             Text(
               formatDurationMMSS(
-                Duration(minutes: item.duration ?? 0),
+                Duration(milliseconds: item.duration ?? 0),
               ),
               style: AppTextStyle.body14(),
             ),

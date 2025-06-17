@@ -14,7 +14,9 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
       (position) {
         final duration = audioPlayer.duration ?? Duration.zero;
         add(MusicProccess(
-            soundCurrentTime: duration, soundTotalTime: position));
+          soundCurrentTime: position,
+          soundTotalTime: duration,
+        ));
       },
     );
 
@@ -24,7 +26,7 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
     });
 
     on<PlayMusic>((event, emit) {});
-    
+
     on<MusicStop>((event, emit) {
       audioPlayer.stop();
     });

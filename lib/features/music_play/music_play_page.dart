@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/features/music_play/bloc/music_play_bloc.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/formats/formats_time.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 
@@ -57,15 +57,16 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
 
   @override
   Widget build(BuildContext context) {
+    double progress = 0;
+
     return BlocConsumer<MusicPlayBloc, MusicPlayState>(
       listener: (context, state) {},
       builder: (context, state) {
         final bloc = context.read<MusicPlayBloc>();
-        double progress = 0;
 
-        if (state.soundTotalTime.inMicroseconds > 0) {
-          progress = state.soundCurrentTime.inMicroseconds /
-              state.soundTotalTime.inMicroseconds;
+        if (state.soundTotalTime.inMilliseconds > 0) {
+          progress = state.soundCurrentTime.inMilliseconds /
+              state.soundTotalTime.inMilliseconds;
         }
 
         return Scaffold(
@@ -93,20 +94,23 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
                   alignment: Alignment.bottomCenter,
                   padding: const EdgeInsets.only(top: 24),
                   child: Text(
-                    "3:45",
+                    formatDurationMMSS(state.soundCurrentTime),
                     style: AppTextStyle.timeDuration(
                       size: 102,
                       color: Colors.white,
                     ),
                   ),
                 ),
-                Padding(
+                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 200),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   child: LinearProgressIndicator(
                     minHeight: 12,
                     borderRadius: BorderRadius.circular(8),
-                    value: progress.clamp(0.0, 0.1),
-                    backgroundColor: Colors.grey.withOpacity(0.3),
+                    value: progress.clamp(0.0, 1.0),
+                    backgroundColor: Colors.grey.withOpacity(0.5),
                     valueColor:
                         const AlwaysStoppedAnimation<Color>(Colors.white),
                   ),

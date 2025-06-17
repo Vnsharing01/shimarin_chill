@@ -17,12 +17,12 @@ class PlayMusic extends MusicPlayEvent {
 }
 
 class MusicProccess extends MusicPlayEvent {
-  final Duration soundCurrentTime;
-  final Duration soundTotalTime;
+  final Duration? soundCurrentTime;
+  final Duration? soundTotalTime;
 
   MusicProccess({
-    required this.soundCurrentTime,
-    required this.soundTotalTime,
+     this.soundCurrentTime,
+     this.soundTotalTime,
   });
 }
 
