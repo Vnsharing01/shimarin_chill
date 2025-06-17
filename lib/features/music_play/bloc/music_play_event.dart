@@ -15,3 +15,15 @@ class PlayMusic extends MusicPlayEvent {
     required this.listMusic,
   });
 }
+
+class MusicProccess extends MusicPlayEvent {
+  final Duration soundCurrentTime;
+  final Duration soundTotalTime;
+
+  MusicProccess({
+    required this.soundCurrentTime,
+    required this.soundTotalTime,
+  });
+}
+
+class MusicStop extends MusicPlayEvent {}

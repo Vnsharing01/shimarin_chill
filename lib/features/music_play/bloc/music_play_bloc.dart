@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
 
@@ -7,12 +8,64 @@ part 'music_play_event.dart';
 part 'music_play_state.dart';
 
 class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
+  final AudioPlayer audioPlayer = AudioPlayer();
   MusicPlayBloc() : super(const MusicPlayState()) {
-    on<InitData>(
-      (event, emit) => emit(state.copyWith(sounds: event.listMusic)),
+    audioPlayer.positionStream.listen(
+      (position) {
+        final duration = audioPlayer.duration ?? Duration.zero;
+        add(MusicProccess(
+            soundCurrentTime: duration, soundTotalTime: position));
+      },
     );
-    on<PlayMusic>((event, emit) {
-      
+
+    on<InitData>((event, emit) async {
+      emit(state.copyWith(sounds: event.listMusic));
+      await initAudio();
     });
+
+    on<PlayMusic>((event, emit) {});
+    
+    on<MusicStop>((event, emit) {
+      audioPlayer.stop();
+    });
+
+    on<MusicProccess>((event, emit) {
+      emit(state.copyWith(
+        soundCurrentTime: event.soundCurrentTime,
+        soundTotalTime: event.soundTotalTime,
+      ));
+    });
+  }
+
+  @override
+  Future<void> close() {
+    // TODO: implement close
+    audioPlayer.dispose();
+    return super.close();
+  }
+
+  Future<void> initAudio() async {
+    // final state = context.watch<MusicPlayBloc>();
+    final playlist = ConcatenatingAudioSource(
+        shuffleOrder: DefaultShuffleOrder(),
+        useLazyPreparation: true,
+        children: (state.sounds ?? []).map(
+          (path) {
+            return AudioSource.asset(path.filePath!);
+          },
+        ).toList());
+
+    // load playlist
+    await audioPlayer.setAudioSource(
+      playlist,
+      preload: true,
+    );
+
+    // trộn playlist
+    audioPlayer.setShuffleModeEnabled(true);
+    audioPlayer.shuffle();
+
+    // chạy playlist
+    audioPlayer.play();
   }
 }
