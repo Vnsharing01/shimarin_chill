@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,10 +10,14 @@ import 'package:shimarin_chill/data/models/album_model.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
 import 'package:shimarin_chill/features/setting/bloc/setting_bloc.dart';
+import 'package:shimarin_chill/firebase_options.dart';
 import 'package:shimarin_chill/routes/routes.dart';
 import 'package:shimarin_chill/utils/constants.dart';
 
 void main() async {
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
 
@@ -30,9 +35,9 @@ void main() async {
   await localHive.initSounds();
   await localHive.initAlbums();
 
-   await SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   runApp(const MyApp());
 }

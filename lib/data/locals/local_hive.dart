@@ -26,7 +26,8 @@ class LocalHive {
     for (String url in soundsUrl) {
       try {
         await player.setAsset(url);
-        final duration = player.duration?.inSeconds ?? Duration.zero.inSeconds;
+        final duration =
+            player.duration?.inMilliseconds ?? Duration.zero.inMilliseconds;
         // final avatar = url.split('/').last.replaceAll('.mp3', '').contains(other)
 
         final sound = SoundModel(

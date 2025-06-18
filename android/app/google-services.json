@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "232697583897",
+    "firebase_url": "https://shimarin-chill-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "shimarin-chill",
+    "storage_bucket": "shimarin-chill.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232697583897:android:9b061d57864b6825610d88",
+        "android_client_info": {
+          "package_name": "com.example.shimarin_chill"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4TYGunQjXqpHymzSZizMRcP9EeAPt_JI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
