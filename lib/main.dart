@@ -15,10 +15,12 @@ import 'package:shimarin_chill/routes/routes.dart';
 import 'package:shimarin_chill/utils/constants.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  WidgetsFlutterBinding.ensureInitialized();
+
   final prefs = await SharedPreferences.getInstance();
 
   getIt.registerSingleton<SharedPreferences>(prefs);

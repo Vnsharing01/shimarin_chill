@@ -4,8 +4,12 @@ abstract class MusicPlayEvent {}
 
 class InitData extends MusicPlayEvent {
   final List<SoundModel> listMusic;
+  final int? durationSelected;
 
-  InitData({required this.listMusic});
+  InitData({
+    required this.listMusic,
+    this.durationSelected,
+  });
 }
 
 class PlayMusic extends MusicPlayEvent {
@@ -21,8 +25,8 @@ class MusicProccess extends MusicPlayEvent {
   final Duration? soundTotalTime;
 
   MusicProccess({
-     this.soundCurrentTime,
-     this.soundTotalTime,
+    this.soundCurrentTime,
+    this.soundTotalTime,
   });
 }
 

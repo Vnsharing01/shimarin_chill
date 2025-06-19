@@ -4,27 +4,32 @@ class MusicPlayState extends Equatable {
   final LoadStatus? loadStatus;
   final List<SoundModel>? sounds;
   final int timerSelected;
+  final Duration durationSelected;
   final Duration soundCurrentTime;
   final Duration soundTotalTime;
 
-  const MusicPlayState( {
+  const MusicPlayState({
     this.loadStatus = LoadStatus.initial,
     this.sounds,
     this.timerSelected = 0,
-    this.soundCurrentTime = Duration.zero, this.soundTotalTime= Duration.zero,
+    this.durationSelected = Duration.zero,
+    this.soundCurrentTime = Duration.zero,
+    this.soundTotalTime = Duration.zero,
   });
 
   MusicPlayState copyWith({
     LoadStatus? loadStatus = LoadStatus.initial,
     List<SoundModel>? sounds,
     int? timerSelected,
-    final Duration ?soundCurrentTime,
-  final Duration? soundTotalTime,
+    final Duration? durationSelected,
+    final Duration? soundCurrentTime,
+    final Duration? soundTotalTime,
   }) {
     return MusicPlayState(
       loadStatus: loadStatus ?? this.loadStatus,
       sounds: sounds ?? this.sounds,
       timerSelected: timerSelected ?? this.timerSelected,
+      durationSelected: durationSelected ?? this.durationSelected,
       soundCurrentTime: soundCurrentTime ?? this.soundCurrentTime,
       soundTotalTime: soundTotalTime ?? this.soundTotalTime,
     );
@@ -35,6 +40,8 @@ class MusicPlayState extends Equatable {
         loadStatus,
         sounds,
         timerSelected,
+        durationSelected,
         soundCurrentTime,
+        soundTotalTime,
       ];
 }

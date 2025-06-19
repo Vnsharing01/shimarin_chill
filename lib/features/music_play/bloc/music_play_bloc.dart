@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
+import 'package:shimarin_chill/utils/enum/play_duration_enum.dart';
 
 part 'music_play_event.dart';
 part 'music_play_state.dart';
@@ -21,7 +22,13 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
     );
 
     on<InitData>((event, emit) async {
-      emit(state.copyWith(sounds: event.listMusic));
+      final duration =
+          DurationEnumExtension.getMinutes(event.durationSelected ?? 0);
+      emit(state.copyWith(
+        sounds: event.listMusic,
+        timerSelected: event.durationSelected,
+        durationSelected: Duration(minutes: duration),
+      ));
       await initAudio();
     });
 

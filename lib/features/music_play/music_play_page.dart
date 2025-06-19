@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/features/music_play/bloc/music_play_bloc.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/enum/play_duration_enum.dart';
 import 'package:shimarin_chill/utils/formats/formats_time.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
@@ -36,7 +37,10 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
     super.initState();
 
     context.read<MusicPlayBloc>().add(
-          InitData(listMusic: widget.arguments?.sounds ?? []),
+          InitData(
+            listMusic: widget.arguments?.sounds ?? [],
+            durationSelected: widget.arguments?.durationSelected,
+          ),
         );
 
     // xoay ngang màn hình
@@ -81,9 +85,7 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-
-                  /// TODO: ảnh thay đổi theo nhạc
-                  image: AssetImage(state.sounds?.first.coverImage ?? dfImg),
+                  image: AssetImage(state.sounds?.last.coverImage ?? dfImg),
                   fit: BoxFit.fill),
             ),
             child: Column(
@@ -94,7 +96,9 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
                   alignment: Alignment.bottomCenter,
                   padding: const EdgeInsets.only(top: 24),
                   child: Text(
-                    formatDurationMMSS(state.soundCurrentTime),
+                    state.timerSelected == PlayDurationEnum.none.key
+                        ? formatDurationMMSS(state.soundCurrentTime)
+                        : formatDurationMMSS(state.durationSelected),
                     style: AppTextStyle.timeDuration(
                       size: 102,
                       color: Colors.white,
