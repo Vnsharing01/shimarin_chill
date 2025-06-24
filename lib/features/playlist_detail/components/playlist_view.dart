@@ -44,7 +44,7 @@ class _PlaylistViewState extends State<PlaylistView> {
         ),
       ),
       subtitle: Text(
-        formatDurationMMSS(
+        formatDurationHHMM(
           Duration(minutes: item.duration ?? 0),
         ),
       ),
@@ -84,7 +84,7 @@ class _PlaylistViewState extends State<PlaylistView> {
               style: AppTextStyle.body16(),
             ),
             Text(
-              formatDurationMMSS(
+              formatDurationHHMM(
                 Duration(milliseconds: item.duration ?? 0),
               ),
               style: AppTextStyle.body14(),
