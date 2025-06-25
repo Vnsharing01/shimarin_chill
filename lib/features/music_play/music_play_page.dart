@@ -31,11 +31,17 @@ class MusicPlayPage extends StatefulWidget {
   State<MusicPlayPage> createState() => _MusicPlayPageState();
 }
 
-class _MusicPlayPageState extends State<MusicPlayPage> {
+class _MusicPlayPageState extends State<MusicPlayPage>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+
   @override
   void initState() {
     super.initState();
-
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration.zero,
+    );
     context.read<MusicPlayBloc>().add(
           InitData(
             listMusic: widget.arguments?.sounds ?? [],
@@ -47,10 +53,23 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
     ]);
+
+    _animationController.addListener(() {
+      setState(() {});
+    });
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.dismissed) {
+        debugPrint("⏰ Đã hết thời gian");
+        context.read<MusicPlayBloc>().add(MusicStop());
+      }
+    });
   }
 
   @override
   void dispose() {
+    _animationController.dispose();
+
     // xoay dọc màn hình
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -62,9 +81,19 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
   @override
   Widget build(BuildContext context) {
     double progress = 0;
+    final duration =
+        _animationController.duration! * _animationController.value;
 
     return BlocConsumer<MusicPlayBloc, MusicPlayState>(
-      listener: (context, state) {},
+      listenWhen: (previous, current) =>
+          previous.durationSelected != current.durationSelected,
+      listener: (context, state) {
+        if (state.durationSelected > Duration.zero) {
+          _startDuration(state.durationSelected);
+        } else {
+          _animationController.stop();
+        }
+      },
       builder: (context, state) {
         final bloc = context.read<MusicPlayBloc>();
 
@@ -95,15 +124,19 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
                 Container(
                   alignment: Alignment.bottomCenter,
                   padding: const EdgeInsets.only(top: 24),
-                  child: Text(
-                    state.timerSelected == PlayDurationEnum.none.key
-                        ? formatDurationMMSS(state.soundCurrentTime)
-                        : formatDurationMMSS(state.durationSelected),
-                    style: AppTextStyle.timeDuration(
-                      size: 102,
-                      color: Colors.white,
-                    ),
-                  ),
+                  child: AnimatedBuilder(
+                      animation: _animationController,
+                      builder: (_, __) {
+                        return Text(
+                          state.timerSelected == PlayDurationEnum.none.key
+                              ? formatDurationMMSS(state.soundCurrentTime)
+                              : formatDurationMMSS(duration),
+                          style: AppTextStyle.timeDuration(
+                            size: 102,
+                            color: Colors.white,
+                          ),
+                        );
+                      }),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 200),
@@ -125,5 +158,10 @@ class _MusicPlayPageState extends State<MusicPlayPage> {
         );
       },
     );
+  }
+
+  void _startDuration(Duration duration) {
+    _animationController.duration = duration;
+    _animationController.reverse(from: 1.0);
   }
 }
