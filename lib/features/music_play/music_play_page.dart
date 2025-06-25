@@ -88,7 +88,7 @@ class _MusicPlayPageState extends State<MusicPlayPage>
       listenWhen: (previous, current) =>
           previous.durationSelected != current.durationSelected,
       listener: (context, state) {
-        if (state.durationSelected > Duration.zero) {
+        if (duration > Duration.zero) {
           _startDuration(state.durationSelected);
         } else {
           _animationController.stop();

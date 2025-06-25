@@ -21,6 +21,21 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
       },
     );
 
+    audioPlayer.processingStateStream.listen(
+      (event) async {
+        if (event == ProcessingState.completed) {
+          print("chạy lại");
+          audioPlayer.seek(
+            Duration.zero,
+          );
+          audioPlayer.shuffle();
+
+          // chạy playlist
+          audioPlayer.play();
+        }
+      },
+    );
+
     on<InitData>((event, emit) async {
       final duration =
           DurationEnumExtension.getMinutes(event.durationSelected ?? 0);
