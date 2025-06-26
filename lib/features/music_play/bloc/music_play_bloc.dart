@@ -49,8 +49,16 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
 
     on<PlayMusic>((event, emit) {});
 
-    on<MusicStop>((event, emit) {
+    on<MusicStop>((event, emit) async {
       audioPlayer.stop();
+
+      // load playlist
+      await audioPlayer.setAudioSource(
+        AudioSource.asset("assets/sounds/completed_flute.mp3"),
+        preload: true,
+      );
+      await audioPlayer.play();
+      await audioPlayer.stop();
     });
 
     on<MusicProccess>((event, emit) {
