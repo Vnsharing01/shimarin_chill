@@ -130,11 +130,14 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                     child: InkWell(
                       customBorder: const CircleBorder(),
                       onTap: () {
-                        context.push(RouterPath.musicPlay,
-                            extra: PlayArguments(
-                              durationSelected: state.timerSelected,
-                              sounds: state.sounds ?? [],
-                            ));
+                        // context.push(RouterPath.musicPlay,
+                        //     extra: PlayArguments(
+                        //       durationSelected: state.timerSelected,
+                        //       sounds: state.sounds ?? [],
+                        //     ));
+                        context.push(
+                          RouterPath.finish,
+                        );
                       },
                       child: Ink(
                         padding: const EdgeInsets.all(4),

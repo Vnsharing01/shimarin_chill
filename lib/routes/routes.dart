@@ -1,5 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shimarin_chill/features/finish_playlist/bloc/finish_playlist_bloc.dart';
+import 'package:shimarin_chill/features/finish_playlist/finish_playlist_page.dart';
 import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
 import 'package:shimarin_chill/features/home/home_page.dart';
 import 'package:shimarin_chill/features/music_play/bloc/music_play_bloc.dart';
@@ -49,6 +51,15 @@ final GoRouter appRouter = GoRouter(
           child: MusicPlayPage(
             arguments: state.extra as PlayArguments,
           ),
+        );
+      },
+    ),
+    GoRoute(
+      path: RouterPath.finish,
+      builder: (context, state) {
+        return BlocProvider(
+          create: (_) => FinishPlaylistBloc(),
+          child: FinishPlaylistPage(),
         );
       },
     ),
