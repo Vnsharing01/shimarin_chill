@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shimarin_chill/features/home/home_page.dart';
+import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
 
 class BtnText extends StatefulWidget {
@@ -25,7 +28,9 @@ class _BtnTextState extends State<BtnText> {
           borderRadius: BorderRadius.circular(16),
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () {
+            context.go(RouterPath.home);
+          },
           borderRadius: BorderRadius.circular(16),
           child: Ink(
             child: Container(

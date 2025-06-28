@@ -135,7 +135,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                         //       durationSelected: state.timerSelected,
                         //       sounds: state.sounds ?? [],
                         //     ));
-                        context.push(
+                        context.go(
                           RouterPath.finish,
                         );
                       },

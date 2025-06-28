@@ -19,10 +19,12 @@ class FinishPlaylistPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.orangeAccent.shade100,
+        backgroundColor: Colors.orangeAccent[100],
+        primary: true,
         appBar: dfAppBar(
           title: '',
         ),
+        extendBodyBehindAppBar: true,
         body: Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(
@@ -33,11 +35,13 @@ class FinishPlaylistPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 54),
+              const SizedBox(height: 125),
               Text(
                 'Hẹn giờ kết thúc!\n Bạn có muốn tiếp tục \nvới chủ đề này không?',
                 textAlign: TextAlign.center,
-                style: AppTextStyle.lable(),
+                style: AppTextStyle.lable(
+                  color: Colors.black87,
+                ),
               ),
               const SizedBox(height: 16),
               BtnText(
