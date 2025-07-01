@@ -60,9 +60,6 @@ class BackgroundAlbumCard extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    data?.selectedTime != null
-                        ? const Text("data.time")
-                        : const SizedBox.shrink(),
                   ],
                 ),
               ),

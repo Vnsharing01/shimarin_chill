@@ -59,6 +59,7 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
       );
       await audioPlayer.play();
       await audioPlayer.stop();
+      
     });
 
     on<MusicProccess>((event, emit) {

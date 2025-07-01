@@ -78,6 +78,9 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
               context: context,
               title: state.data?.title ?? '',
               txtStyle: AppTextStyle.lable(color: Colors.white),
+              onBack: () {
+                context.go(RouterPath.home);
+              },
             ),
             extendBodyBehindAppBar: true,
             body: Stack(
@@ -126,17 +129,18 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                   right: 0,
                   child: Material(
                     shape: const CircleBorder(),
-                    elevation: 1.5,
+                    color: Colors.white,
+                    elevation: 5,
                     child: InkWell(
                       customBorder: const CircleBorder(),
                       onTap: () {
-                        // context.push(RouterPath.musicPlay,
-                        //     extra: PlayArguments(
-                        //       durationSelected: state.timerSelected,
-                        //       sounds: state.sounds ?? [],
-                        //     ));
-                        context.go(
-                          RouterPath.finish,
+                        context.push(
+                          RouterPath.musicPlay,
+                          extra: PlayArguments(
+                            albumId: widget.arguments?.albumId ?? '',
+                            durationSelected: state.timerSelected,
+                            sounds: state.sounds ?? [],
+                          ),
                         );
                       },
                       child: Ink(

@@ -59,7 +59,9 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         return BlocProvider(
           create: (_) => FinishPlaylistBloc(),
-          child: FinishPlaylistPage(),
+          child: FinishPlaylistPage(
+            arguments: state.extra as FinishArguments,
+          ),
         );
       },
     ),

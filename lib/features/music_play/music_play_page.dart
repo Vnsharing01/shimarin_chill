@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
+import 'package:shimarin_chill/features/finish_playlist/finish_playlist_page.dart';
 import 'package:shimarin_chill/features/music_play/bloc/music_play_bloc.dart';
+import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
 import 'package:shimarin_chill/utils/enum/play_duration_enum.dart';
 import 'package:shimarin_chill/utils/formats/formats_time.dart';
@@ -10,10 +13,12 @@ import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 
 class PlayArguments {
+  final String albumId;
   final int durationSelected;
   final List<SoundModel> sounds;
 
   PlayArguments({
+    required this.albumId,
     required this.durationSelected,
     required this.sounds,
   });
@@ -58,10 +63,16 @@ class _MusicPlayPageState extends State<MusicPlayPage>
       setState(() {});
     });
 
-    _animationController.addStatusListener((status) {
+    _animationController.addStatusListener((status) async {
       if (status == AnimationStatus.dismissed) {
         debugPrint("⏰ Đã hết thời gian");
         context.read<MusicPlayBloc>().add(MusicStop());
+        context.go(
+          RouterPath.finish,
+          extra: FinishArguments(
+            albumId: widget.arguments?.albumId ?? '',
+          ),
+        );
       }
     });
   }

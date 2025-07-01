@@ -14,4 +14,6 @@ class AppIcons {
   static final IconData back = PhosphorIcons.arrowLeft();
   static final IconData radioButton = PhosphorIcons.circle();
   static final IconData radioActive = PhosphorIcons.checkCircle();
+  
+  static const String completed = 'assets/icons/completed_icon.png';
 }
