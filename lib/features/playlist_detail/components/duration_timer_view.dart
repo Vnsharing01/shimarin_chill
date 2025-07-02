@@ -19,50 +19,52 @@ class _DurationTimerViewState extends State<DurationTimerView> {
       },
       builder: (context, state) {
         final bloc = context.read<PlaylistDetailBloc>();
-        return Column(
-          children: [
-            const SizedBox(height: 16),
-            BtnRadio(
-              value: 1,
-              selected: state.timerSelected,
-              txtTitle: PlayDurationEnum.minutes25.title,
-              onTap: (value) {
-                bloc.add(ChangedTime(
-                  value: value,
-                ));
-              },
-            ),
-            BtnRadio(
-              value: 2,
-              selected: state.timerSelected,
-              txtTitle: PlayDurationEnum.minutes35.title,
-              onTap: (value) {
-                bloc.add(ChangedTime(
-                  value: value,
-                ));
-              },
-            ),
-            BtnRadio(
-              value: 3,
-              selected: state.timerSelected,
-              txtTitle: PlayDurationEnum.minutes45.title,
-              onTap: (value) {
-                bloc.add(ChangedTime(
-                  value: value,
-                ));
-              },
-            ),
-            BtnRadio(
-              value: 0,
-              selected: state.timerSelected,
-              txtTitle: PlayDurationEnum.none.title,
-              onTap: (value) {
-                bloc.add(ChangedTime(
-                  value: value,
-                ));
-              },
-            ),
-          ],
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 16),
+              BtnRadio(
+                value: 1,
+                selected: state.timerSelected,
+                txtTitle: PlayDurationEnum.minutes25.title,
+                onTap: (value) {
+                  bloc.add(ChangedTime(
+                    value: value,
+                  ));
+                },
+              ),
+              BtnRadio(
+                value: 2,
+                selected: state.timerSelected,
+                txtTitle: PlayDurationEnum.minutes35.title,
+                onTap: (value) {
+                  bloc.add(ChangedTime(
+                    value: value,
+                  ));
+                },
+              ),
+              BtnRadio(
+                value: 3,
+                selected: state.timerSelected,
+                txtTitle: PlayDurationEnum.minutes45.title,
+                onTap: (value) {
+                  bloc.add(ChangedTime(
+                    value: value,
+                  ));
+                },
+              ),
+              BtnRadio(
+                value: 0,
+                selected: state.timerSelected,
+                txtTitle: PlayDurationEnum.none.title,
+                onTap: (value) {
+                  bloc.add(ChangedTime(
+                    value: value,
+                  ));
+                },
+              ),
+            ],
+          ),
         );
       },
     );

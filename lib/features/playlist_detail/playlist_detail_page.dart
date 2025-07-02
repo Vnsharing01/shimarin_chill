@@ -74,6 +74,36 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
         }
         return SafeArea(
           child: Scaffold(
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            floatingActionButton: Material(
+              shape: const CircleBorder(),
+              color: Colors.white,
+              elevation: 5,
+              child: InkWell(
+                customBorder: const CircleBorder(),
+                onTap: () {
+                  context.push(
+                    RouterPath.musicPlay,
+                    extra: PlayArguments(
+                      albumId: widget.arguments?.albumId ?? '',
+                      durationSelected: state.timerSelected,
+                      sounds: state.sounds ?? [],
+                    ),
+                  );
+                },
+                child: Ink(
+                  padding: const EdgeInsets.all(4),
+                  child: CircleAvatar(
+                    radius: 36,
+                    child: Icon(
+                      AppIcons.play,
+                      size: 32,
+                    ),
+                  ),
+                ),
+              ),
+            ),
             appBar: iconWhiteAppBar(
               context: context,
               title: state.data?.title ?? '',
@@ -83,80 +113,42 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
               },
             ),
             extendBodyBehindAppBar: true,
-            body: Stack(
-              fit: StackFit.expand,
-              children: [
-                MediaQuery.removePadding(
-                  context: context,
-                  removeTop: true,
-                  child: Column(
-                    children: [
-                      _buildInfoView(state),
-                      TabBar(
-                        controller: _tabController,
-                        tabs: [
-                          Tab(
-                            child: Text(
-                              'Hẹn giờ',
-                              style: AppTextStyle.title(),
-                            ),
-                          ),
-                          Tab(
-                            child: Text(
-                              'Danh sách nhạc',
-                              style: AppTextStyle.title(),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Expanded(
-                        child: TabBarView(
-                          controller: _tabController,
-                          children: [
-                            const DurationTimerView(),
-                            PlaylistView(
-                              sounds: state.sounds,
-                            ),
-                          ],
+            body: MediaQuery.removePadding(
+              context: context,
+              removeTop: true,
+              child: Column(
+                children: [
+                  _buildInfoView(state),
+                  TabBar(
+                    controller: _tabController,
+                    tabs: [
+                      Tab(
+                        child: Text(
+                          'Hẹn giờ',
+                          style: AppTextStyle.title(),
                         ),
-                      )
+                      ),
+                      Tab(
+                        child: Text(
+                          'Danh sách nhạc',
+                          style: AppTextStyle.title(),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-                Positioned(
-                  bottom: 16,
-                  left: 0,
-                  right: 0,
-                  child: Material(
-                    shape: const CircleBorder(),
-                    color: Colors.white,
-                    elevation: 5,
-                    child: InkWell(
-                      customBorder: const CircleBorder(),
-                      onTap: () {
-                        context.push(
-                          RouterPath.musicPlay,
-                          extra: PlayArguments(
-                            albumId: widget.arguments?.albumId ?? '',
-                            durationSelected: state.timerSelected,
-                            sounds: state.sounds ?? [],
-                          ),
-                        );
-                      },
-                      child: Ink(
-                        padding: const EdgeInsets.all(4),
-                        child: CircleAvatar(
-                          radius: 36,
-                          child: Icon(
-                            AppIcons.play,
-                            size: 32,
-                          ),
+                  Expanded(
+                    child: TabBarView(
+                      controller: _tabController,
+                      children: [
+                        const DurationTimerView(),
+                        PlaylistView(
+                          sounds: state.sounds,
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                ),
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         );
