@@ -39,6 +39,7 @@ class MusicPlayPage extends StatefulWidget {
 class _MusicPlayPageState extends State<MusicPlayPage>
     with TickerProviderStateMixin {
   late AnimationController _animationController;
+  late MusicPlayBloc mBloc;
 
   @override
   void initState() {
@@ -47,17 +48,24 @@ class _MusicPlayPageState extends State<MusicPlayPage>
       vsync: this,
       duration: Duration.zero,
     );
-    context.read<MusicPlayBloc>().add(
-          InitData(
-            listMusic: widget.arguments?.sounds ?? [],
-            durationSelected: widget.arguments?.durationSelected,
-          ),
-        );
 
-    // xoay ngang màn hình
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeRight,
-    ]);
+    mBloc = context.read<MusicPlayBloc>();
+
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        // xoay ngang màn hình
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.landscapeRight,
+        ]);
+      },
+    );
+
+    mBloc.add(
+      InitData(
+        listMusic: widget.arguments?.sounds ?? [],
+        durationSelected: widget.arguments?.durationSelected,
+      ),
+    );
 
     _animationController.addListener(() {
       setState(() {});
@@ -66,7 +74,14 @@ class _MusicPlayPageState extends State<MusicPlayPage>
     _animationController.addStatusListener((status) async {
       if (status == AnimationStatus.dismissed) {
         debugPrint("⏰ Đã hết thời gian");
-        context.read<MusicPlayBloc>().add(MusicStop());
+        mBloc.add(MusicStop());
+        // xoay dọc màn hình
+        await SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
+        if (!mounted) {
+          return;
+        }
         context.go(
           RouterPath.finish,
           extra: FinishArguments(
@@ -80,12 +95,6 @@ class _MusicPlayPageState extends State<MusicPlayPage>
   @override
   void dispose() {
     _animationController.dispose();
-
-    // xoay dọc màn hình
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    context.read<MusicPlayBloc>().close();
     super.dispose();
   }
 
@@ -106,8 +115,6 @@ class _MusicPlayPageState extends State<MusicPlayPage>
         }
       },
       builder: (context, state) {
-        final bloc = context.read<MusicPlayBloc>();
-
         if (state.soundTotalTime.inMilliseconds > 0) {
           progress = state.soundCurrentTime.inMilliseconds /
               state.soundTotalTime.inMilliseconds;
@@ -117,8 +124,12 @@ class _MusicPlayPageState extends State<MusicPlayPage>
           appBar: iconWhiteAppBar(
             context: context,
             title: '',
-            onBack: () {
-              bloc.add(MusicStop());
+            onBack: () async {
+              mBloc.add(MusicStop());
+              // xoay dọc màn hình
+              await SystemChrome.setPreferredOrientations([
+                DeviceOrientation.portraitUp,
+              ]);
             },
           ),
           extendBodyBehindAppBar: true,
