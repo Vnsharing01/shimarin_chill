@@ -50,21 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyB4TYGunQjXqpHymzSZizMRcP9EeAPt_JI',
-    appId: '1:232697583897:android:9b061d57864b6825610d88',
-    messagingSenderId: '232697583897',
-    projectId: 'shimarin-chill',
-    databaseURL: 'https://shimarin-chill-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'shimarin-chill.firebasestorage.app',
+    apiKey: 'AIzaSyAGQtS7TD_xMc98XmzTMg6V9HV9ejEzRDg',
+    appId: '1:580828026654:android:4ca7b2edf877699c8d1b0f',
+    messagingSenderId: '580828026654',
+    projectId: 'shimarin-chill-eb807',
+    storageBucket: 'shimarin-chill-eb807.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDOs_OWsgdLUFUb3ycmO0NZek9NNpoxeso',
-    appId: '1:232697583897:ios:14260a83d90a1625610d88',
-    messagingSenderId: '232697583897',
-    projectId: 'shimarin-chill',
-    databaseURL: 'https://shimarin-chill-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'shimarin-chill.firebasestorage.app',
+    apiKey: 'AIzaSyCD83r0jNWGSnomwUV0p6xNbAGD7BFXX2k',
+    appId: '1:580828026654:ios:ddf5008a6a445ba78d1b0f',
+    messagingSenderId: '580828026654',
+    projectId: 'shimarin-chill-eb807',
+    storageBucket: 'shimarin-chill-eb807.firebasestorage.app',
     iosBundleId: 'com.example.shimarinChill',
   );
 }
