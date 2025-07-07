@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
 import 'package:shimarin_chill/features/playlist_detail/playlist_detail_page.dart';
 import 'package:shimarin_chill/routes/router_path.dart';
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  BannerAd? _bannerAd;
   @override
   void initState() {
     final bloc = context.read<HomeBloc>();
@@ -26,6 +28,13 @@ class _HomePageState extends State<HomePage> {
       context.read<HomeBloc>().add(AddPlaylist());
     }
     super.initState();
+    loadAd();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd?.dispose();
+    super.dispose();
   }
 
   @override
@@ -56,28 +65,74 @@ class _HomePageState extends State<HomePage> {
             ),
             body: Padding(
               padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
-              child: ListView.separated(
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  final item = state.albums?[index];
-                  return BackgroundAlbumCard(
-                    height: 100,
-                    data: item,
-                    onTap: () {
-                      context.push(RouterPath.playlistDetail,
-                          extra: DetailArguments(
-                            albumId: item?.id ?? '',
-                          ));
-                    },
-                  );
-                },
-                separatorBuilder: (context, index) => const SizedBox(height: 4),
-                itemCount: state.albums?.length ?? 0,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        final item = state.albums?[index];
+                        return BackgroundAlbumCard(
+                          height: 100,
+                          data: item,
+                          onTap: () {
+                            context.push(RouterPath.playlistDetail,
+                                extra: DetailArguments(
+                                  albumId: item?.id ?? '',
+                                ));
+                          },
+                        );
+                      },
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(height: 4),
+                      itemCount: state.albums?.length ?? 0,
+                    ),
+                  ),
+                  _bannerAd == null
+                      // Nothing to render yet.
+                      ? const SizedBox()
+                      // The actual ad.
+                      : SizedBox(
+                          width: _bannerAd!.size.width.toDouble(),
+                          height: _bannerAd!.size.height.toDouble(),
+                          child: AdWidget(ad: _bannerAd!),
+                        ),
+                ],
               ),
             ),
           ),
         );
       },
     );
+  }
+
+  /// Loads a banner ad.
+  void loadAd() {
+    final bannerAd = BannerAd(
+      size: AdSize.banner,
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          if (!mounted) {
+            ad.dispose();
+            return;
+          }
+          setState(() {
+            _bannerAd = ad as BannerAd;
+            debugPrint('BannerAd success');
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, error) {
+          debugPrint('BannerAd failed to load: $error');
+          ad.dispose();
+        },
+      ),
+    );
+
+    // Start loading.
+    bannerAd.load();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shimarin_chill/features/playlist_detail/playlist_detail_page.dart';
 import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
@@ -15,13 +16,25 @@ class FinishArguments {
   });
 }
 
-class FinishPlaylistPage extends StatelessWidget {
+class FinishPlaylistPage extends StatefulWidget {
   const FinishPlaylistPage({
     super.key,
     this.arguments,
   });
 
   final FinishArguments? arguments;
+
+  @override
+  State<FinishPlaylistPage> createState() => _FinishPlaylistPageState();
+}
+
+class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
+  BannerAd? _bannerAd;
+  @override
+  void initState() {
+    loadAd();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +88,7 @@ class FinishPlaylistPage extends StatelessWidget {
                           context.push(
                             RouterPath.playlistDetail,
                             extra: DetailArguments(
-                              albumId: arguments?.albumId ?? '',
+                              albumId: widget.arguments?.albumId ?? '',
                             ),
                           );
                         },
@@ -90,10 +103,52 @@ class FinishPlaylistPage extends StatelessWidget {
                   ),
                 ),
               ),
+              _bannerAd == null
+                  // Nothing to render yet.
+                  ? const SizedBox()
+                  // The actual ad.
+                  : Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        width: _bannerAd!.size.width.toDouble(),
+                        height: _bannerAd!.size.height.toDouble(),
+                        child: AdWidget(ad: _bannerAd!),
+                      ),
+                    ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  /// Loads a banner ad.
+  void loadAd() {
+    final bannerAd = BannerAd(
+      size: AdSize.banner,
+      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      request: const AdRequest(),
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          if (!mounted) {
+            ad.dispose();
+            return;
+          }
+          setState(() {
+            _bannerAd = ad as BannerAd;
+            debugPrint('BannerAd success');
+          });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, error) {
+          debugPrint('BannerAd failed to load: $error');
+          ad.dispose();
+        },
+      ),
+    );
+
+    // Start loading.
+    bannerAd.load();
   }
 }
