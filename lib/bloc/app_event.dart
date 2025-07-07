@@ -1,10 +1,10 @@
 part of 'app_bloc.dart';
 
-abstract class AppEvent {
-  const AppEvent();
+abstract class AppMainEvent {
+  const AppMainEvent();
 }
 
-class ChangedThemeMode extends AppEvent{
+class ChangedThemeMode extends AppMainEvent {
   final bool isChanged;
 
   ChangedThemeMode({

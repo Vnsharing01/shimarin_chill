@@ -1,14 +1,14 @@
 part of 'app_bloc.dart';
 
-class AppState extends Equatable {
+class AppMainState extends Equatable {
   final bool? isDarkMode;
 
-  const AppState({
+  const AppMainState({
     this.isDarkMode = false,
   });
 
-  AppState copyWith({bool? isDarkMode}) {
-    return AppState(
+  AppMainState copyWith({bool? isDarkMode}) {
+    return AppMainState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
     );
   }

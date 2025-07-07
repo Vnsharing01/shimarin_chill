@@ -24,7 +24,7 @@ class _SettingPageState extends State<SettingPage> {
         if (!(previous.isDarkMode != current.isDarkMode)) {
           return false;
         }
-        context.read<AppBloc>().add(
+        context.read<AppMainBloc>().add(
               ChangedThemeMode(isChanged: current.isDarkMode),
             );
         return true;

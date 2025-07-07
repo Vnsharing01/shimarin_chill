@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimarin_chill/bloc/app_bloc.dart';
@@ -16,6 +19,7 @@ import 'package:shimarin_chill/utils/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  unawaited(MobileAds.instance.initialize());
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -54,7 +58,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AppBloc(),
+          create: (context) => AppMainBloc(),
         ),
         BlocProvider(
           create: (context) => HomeBloc(),
@@ -63,7 +67,7 @@ class MyApp extends StatelessWidget {
           create: (context) => SettingBloc(),
         )
       ],
-      child: BlocBuilder<AppBloc, AppState>(
+      child: BlocBuilder<AppMainBloc, AppMainState>(
         builder: (context, state) {
           return MaterialApp.router(
             title: 'Shimarin Chill',

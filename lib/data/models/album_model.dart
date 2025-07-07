@@ -1,8 +1,11 @@
 import 'package:hive_flutter/adapters.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:shimarin_chill/data/models/sound_model.dart';
 
 part 'album_model.g.dart';
 
 @HiveType(typeId: 1)
+@JsonSerializable()
 class AlbumModel extends HiveObject {
   @HiveField(0)
   final String? id;
@@ -37,4 +40,9 @@ class AlbumModel extends HiveObject {
     this.soundIds,
     this.selectedTime,
   });
+
+  factory AlbumModel.fromJson(Map<String, dynamic> json) =>
+      _$AlbumModelFromJson(json);
+
+  Map<String, dynamic> toJson(List<SoundModel> sounds) => _$AlbumModelToJson(this);
 }

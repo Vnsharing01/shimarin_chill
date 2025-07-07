@@ -3,6 +3,9 @@
         android:label="shimarin_chill"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8875895136331561~3262968833"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
