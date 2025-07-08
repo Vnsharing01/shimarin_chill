@@ -44,8 +44,8 @@ class _PlaylistViewState extends State<PlaylistView> {
         ),
       ),
       subtitle: Text(
-        formatDurationHHMM(
-          Duration(minutes: item.duration ?? 0),
+        formatDurationMMSS(
+          Duration(milliseconds: item.duration ?? 0),
         ),
       ),
       leading: CircleAvatar(

@@ -26,13 +26,15 @@ class LocalHive {
     for (String url in soundsUrl) {
       try {
         await player.setAsset(url);
-        final duration =
-            player.duration?.inMilliseconds ?? Duration.zero.inMilliseconds;
+        await player.load();
+        final duration = await player.durationStream.firstWhere(
+          (element) => element != null,
+        );
         // final avatar = url.split('/').last.replaceAll('.mp3', '').contains(other)
 
         final sound = SoundModel(
           id: "sound_${soundsUrl.indexOf(url)}",
-          duration: duration,
+          duration: duration?.inMilliseconds,
           filePath: url,
           title: url.split('/').last.replaceAll('.mp3', ''),
           coverImage: imgsUrl.first,
