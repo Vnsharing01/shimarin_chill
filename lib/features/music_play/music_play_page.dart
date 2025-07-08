@@ -16,11 +16,13 @@ class PlayArguments {
   final String albumId;
   final int durationSelected;
   final List<SoundModel> sounds;
+  final String? image;
 
   PlayArguments({
     required this.albumId,
     required this.durationSelected,
     required this.sounds,
+    this.image,
   });
 }
 
@@ -64,6 +66,7 @@ class _MusicPlayPageState extends State<MusicPlayPage>
       InitData(
         listMusic: widget.arguments?.sounds ?? [],
         durationSelected: widget.arguments?.durationSelected,
+        image: widget.arguments?.image ?? dfImg,
       ),
     );
 
@@ -136,8 +139,9 @@ class _MusicPlayPageState extends State<MusicPlayPage>
           body: Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage(state.sounds?.last.coverImage ?? dfImg),
-                  fit: BoxFit.fill),
+                image: AssetImage(state.urlImage),
+                fit: BoxFit.fill,
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

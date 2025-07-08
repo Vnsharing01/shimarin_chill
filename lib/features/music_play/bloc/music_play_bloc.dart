@@ -4,6 +4,7 @@ import 'package:just_audio/just_audio.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
 import 'package:shimarin_chill/utils/enum/play_duration_enum.dart';
+import 'package:shimarin_chill/utils/paths/images_path.dart';
 
 part 'music_play_event.dart';
 part 'music_play_state.dart';
@@ -43,6 +44,7 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
         sounds: event.listMusic,
         timerSelected: event.durationSelected,
         durationSelected: Duration(minutes: duration),
+        urlImage: event.image,
       ));
       await initAudio();
     });

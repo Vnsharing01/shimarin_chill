@@ -7,6 +7,7 @@ class MusicPlayState extends Equatable {
   final Duration durationSelected;
   final Duration soundCurrentTime;
   final Duration soundTotalTime;
+  final String urlImage;
 
   const MusicPlayState({
     this.loadStatus = LoadStatus.initial,
@@ -15,6 +16,7 @@ class MusicPlayState extends Equatable {
     this.durationSelected = Duration.zero,
     this.soundCurrentTime = Duration.zero,
     this.soundTotalTime = Duration.zero,
+    this.urlImage = dfImg,
   });
 
   MusicPlayState copyWith({
@@ -24,6 +26,7 @@ class MusicPlayState extends Equatable {
     final Duration? durationSelected,
     final Duration? soundCurrentTime,
     final Duration? soundTotalTime,
+    final String? urlImage,
   }) {
     return MusicPlayState(
       loadStatus: loadStatus ?? this.loadStatus,
@@ -32,6 +35,7 @@ class MusicPlayState extends Equatable {
       durationSelected: durationSelected ?? this.durationSelected,
       soundCurrentTime: soundCurrentTime ?? this.soundCurrentTime,
       soundTotalTime: soundTotalTime ?? this.soundTotalTime,
+      urlImage: urlImage ?? this.urlImage,
     );
   }
 
@@ -43,5 +47,6 @@ class MusicPlayState extends Equatable {
         durationSelected,
         soundCurrentTime,
         soundTotalTime,
+        urlImage,
       ];
 }

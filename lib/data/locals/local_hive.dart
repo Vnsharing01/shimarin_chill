@@ -26,7 +26,6 @@ class LocalHive {
     for (String url in soundsUrl) {
       try {
         await player.setAsset(url);
-        await player.load();
         final duration = await player.durationStream.firstWhere(
           (element) => element != null,
         );
@@ -106,7 +105,7 @@ class LocalHive {
         id: 'album_anime',
         title: '🎌 Anime',
         description: 'Nhạc nền anime truyền cảm hứng.',
-        coverImage: imgsUrl.firstWhere(
+        coverImage: imgsUrl.lastWhere(
           (element) => element.toLowerCase().contains("anime"),
           orElse: () => dfImg,
         ),

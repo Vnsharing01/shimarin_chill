@@ -5,6 +5,7 @@ import 'package:shimarin_chill/features/playlist_detail/playlist_detail_page.dar
 import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 import 'package:shimarin_chill/widgets/button/btn_text.dart';
 
@@ -51,6 +52,12 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
           padding: const EdgeInsets.symmetric(
             vertical: 24,
             horizontal: 16,
+          ),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(dfImg),
+              fit: BoxFit.fill,
+            ),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -103,6 +110,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                   ),
                 ),
               ),
+              const SizedBox(height: 36),
               _bannerAd == null
                   // Nothing to render yet.
                   ? const SizedBox()

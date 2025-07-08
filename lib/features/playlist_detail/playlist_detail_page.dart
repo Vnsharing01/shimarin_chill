@@ -92,6 +92,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                       albumId: widget.arguments?.albumId ?? '',
                       durationSelected: state.timerSelected,
                       sounds: state.sounds ?? [],
+                      image: state.data?.coverImage,
                     ),
                   );
                 },

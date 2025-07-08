@@ -5,10 +5,12 @@ abstract class MusicPlayEvent {}
 class InitData extends MusicPlayEvent {
   final List<SoundModel> listMusic;
   final int? durationSelected;
+  final String? image;
 
   InitData({
     required this.listMusic,
     this.durationSelected,
+    this.image,
   });
 }
 
