@@ -1,0 +1,62 @@
+[
+  {
+    "id": "sound_01",
+    "name": "chill-lofi-background-music",
+    "image": "anime_chill.jpg",
+    "pathSound": "sounds/complete_sound/chill-lofi-background-music-331434.mp3"
+  },
+  {
+    "id": "sound_02",
+    "name": "coffee-lofi-chill-lofi-music",
+    "image": "coffee_chill.jpg",
+    "pathSound": "sounds/complete_sound/coffee-lofi-chill-lofi-music-332738.mp3"
+  },
+  {
+    "id": "sound_03",
+    "name": "completed_flute",
+    "image": "study_chill.jpg",
+    "pathSound": "sounds/complete_sound/completed_flute.mp3"
+  },
+  {
+    "id": "sound_04",
+    "name": "echoes-in-the-rain-lofi-music",
+    "image": "anime_chill_001.jpg",
+    "pathSound": "sounds/complete_sound/echoes-in-the-rain-lofi-music-332825.mp3"
+  },
+  {
+    "id": "sound_05",
+    "name": "lofi-anime-beat-calm-dusk",
+    "image": "anime_chill_002.jpg",
+    "pathSound": "sounds/complete_sound/lofi-anime-beat-calm-dusk-209897.mp3"
+  },
+  {
+    "id": "sound_06",
+    "name": "lofi-anime-beat-chillax-under-the-stars",
+    "image": "anime_chill_003.jpg",
+    "pathSound": "sounds/complete_sound/lofi-anime-beat-chillax-under-the-stars-209518.mp3"
+  },
+  {
+    "id": "sound_07",
+    "name": "lofi-anime-beat-evening-glow",
+    "image": "anime_chill_004.jpg",
+    "pathSound": "sounds/complete_sound/lofi-anime-beat-evening-glow-209896.mp3"
+  },
+  {
+    "id": "sound_08",
+    "name": "lofi-anime-beat-gentle-nightfall",
+    "image": "anime_chill_005.jpg",
+    "pathSound": "sounds/complete_sound/lofi-anime-beat-gentle-nightfall-209901.mp3"
+  },
+  {
+    "id": "sound_09",
+    "name": "lofi-anime-beat-golden-hour-harmony",
+    "image": "anime_chill_006.jpg",
+    "pathSound": "sounds/complete_sound/lofi-anime-beat-golden-hour-harmony-209519.mp3"
+  },
+  {
+    "id": "sound_10",
+    "name": "lofi-anime-beat-mellow-evenings",
+    "image": "background_chill.jpg",
+    "pathSound": "sounds/complete_sound/lofi-anime-beat-mellow-evenings-210701.mp3"
+  }
+]
