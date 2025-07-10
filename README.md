@@ -1,16 +1,35 @@
 # shimarin_chill
 
-A new Flutter project.
+Ứng dụng **phát nhạc theo chủ đề kết hợp hẹn giờ** phù hợp cho tập trung khi **học tập, làm việc, đọc sách, thư giãn**.
 
-## Getting Started
+## 🚀 Tính năng
 
-This project is a starting point for a Flutter application.
+✅ **Phát nhạc theo chủ đề:**
+- Anime, Chill, Coffee, Study,...
+- Phát **ngẫu nhiên playlist** theo chủ đề đã chọn.
 
-A few resources to get you started if this is your first Flutter project:
+✅ **Hẹn giờ tắt nhạc:**
+- Đặt thời gian 25, 33, 45 phút, hoặc không hẹn giờ.
+- Tự động dừng phát nhạc khi hết giờ.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+✅ **Giao diện tối giản, dễ sử dụng:**
+- Hỗ trợ **Dark Mode / Light Mode**.
+- Thanh tiến trình hiển thị tiến độ phát nhạc.
+- Hiển thị ảnh bìa nhạc, thanh thời lượng bài hát.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+✅ **Lưu dữ liệu offline:**
+- Phát nhạc offline (sau khi tải playlist lần đầu).
+
+---
+
+## 🛠️ Công nghệ sử dụng
+
+- **Flutter**: Viết app cross-platform.
+- **Hive**: Lưu trữ offline album, playlist, trạng thái darkmode.
+- **just_audio**: Phát nhạc, quản lý playlist, thanh tiến trình.
+- **go_router**: Điều hướng trang.
+- **google_fonts**: Font phù hợp với app chill.
+- **google_mobile_ads**: Quảng cáo banner.
+- **GitHub Pages + raw.githubusercontent.com**: Host file `json` chứa danh sách album và sound.
+
+---
