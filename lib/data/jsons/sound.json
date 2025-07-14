@@ -1,62 +1,117 @@
 [
   {
     "id": "sound_01",
-    "name": "chill-lofi-background-music",
-    "image": "anime_chill.jpg",
-    "pathSound": "sounds/complete_sound/chill-lofi-background-music-331434.mp3"
+    "name": "chill-lofi-background-music-331434",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/chill-lofi-background-music-331434.mp3"
   },
   {
     "id": "sound_02",
-    "name": "coffee-lofi-chill-lofi-music",
-    "image": "coffee_chill.jpg",
-    "pathSound": "sounds/complete_sound/coffee-lofi-chill-lofi-music-332738.mp3"
+    "name": "coffee-lofi-chill-lofi-music-332738",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/coffee-lofi-chill-lofi-music-332738.mp3"
   },
   {
     "id": "sound_03",
     "name": "completed_flute",
-    "image": "study_chill.jpg",
-    "pathSound": "sounds/complete_sound/completed_flute.mp3"
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/completed_flute.mp3"
   },
   {
     "id": "sound_04",
-    "name": "echoes-in-the-rain-lofi-music",
-    "image": "anime_chill_001.jpg",
-    "pathSound": "sounds/complete_sound/echoes-in-the-rain-lofi-music-332825.mp3"
+    "name": "echoes-in-the-rain-lofi-music-332825",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/echoes-in-the-rain-lofi-music-332825.mp3"
   },
   {
     "id": "sound_05",
-    "name": "lofi-anime-beat-calm-dusk",
-    "image": "anime_chill_002.jpg",
-    "pathSound": "sounds/complete_sound/lofi-anime-beat-calm-dusk-209897.mp3"
+    "name": "lofi-anime-beat-calm-dusk-209897",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-calm-dusk-209897.mp3"
   },
   {
     "id": "sound_06",
-    "name": "lofi-anime-beat-chillax-under-the-stars",
-    "image": "anime_chill_003.jpg",
-    "pathSound": "sounds/complete_sound/lofi-anime-beat-chillax-under-the-stars-209518.mp3"
+    "name": "lofi-anime-beat-chillax-under-the-stars-209518",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-chillax-under-the-stars-209518.mp3"
   },
   {
     "id": "sound_07",
-    "name": "lofi-anime-beat-evening-glow",
-    "image": "anime_chill_004.jpg",
-    "pathSound": "sounds/complete_sound/lofi-anime-beat-evening-glow-209896.mp3"
+    "name": "lofi-anime-beat-evening-glow-209896",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-evening-glow-209896.mp3"
   },
   {
     "id": "sound_08",
-    "name": "lofi-anime-beat-gentle-nightfall",
-    "image": "anime_chill_005.jpg",
-    "pathSound": "sounds/complete_sound/lofi-anime-beat-gentle-nightfall-209901.mp3"
+    "name": "lofi-anime-beat-gentle-nightfall-209901",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-gentle-nightfall-209901.mp3"
   },
   {
     "id": "sound_09",
-    "name": "lofi-anime-beat-golden-hour-harmony",
-    "image": "anime_chill_006.jpg",
-    "pathSound": "sounds/complete_sound/lofi-anime-beat-golden-hour-harmony-209519.mp3"
+    "name": "lofi-anime-beat-golden-hour-harmony-209519",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-golden-hour-harmony-209519.mp3"
   },
   {
     "id": "sound_10",
-    "name": "lofi-anime-beat-mellow-evenings",
-    "image": "background_chill.jpg",
-    "pathSound": "sounds/complete_sound/lofi-anime-beat-mellow-evenings-210701.mp3"
+    "name": "lofi-anime-beat-mellow-evenings-210701",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-mellow-evenings-210701.mp3"
+  },
+  {
+    "id": "sound_11",
+    "name": "lofi-anime-beat-midnight-chill-209899",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-midnight-chill-209899.mp3"
+  },
+  {
+    "id": "sound_12",
+    "name": "lofi-anime-beat-moonlit-serenity-209900",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-moonlit-serenity-209900.mp3"
+  },
+  {
+    "id": "sound_13",
+    "name": "lofi-anime-beat-silent-thoughts-207784",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-silent-thoughts-207784.mp3"
+  },
+  {
+    "id": "sound_14",
+    "name": "lofi-anime-beat-summer-night-breeze-209492",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-anime-beat-summer-night-breeze-209492.mp3"
+  },
+  {
+    "id": "sound_15",
+    "name": "lofi-background-music-326931",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-background-music-326931.mp3"
+  },
+  {
+    "id": "sound_16",
+    "name": "lofi-background-music-336230",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-background-music-336230.mp3"
+  },
+  {
+    "id": "sound_17",
+    "name": "lofi-background-music-337568",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-background-music-337568.mp3"
+  },
+  {
+    "id": "sound_18",
+    "name": "lofi-coffee-330550",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-coffee-330550.mp3"
+  },
+  {
+    "id": "sound_19",
+    "name": "lofi-coffee-332824",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-coffee-332824.mp3"
+  },
+  {
+    "id": "sound_20",
+    "name": "lofi-rain-lofi-music-332732",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/lofi-rain-lofi-music-332732.mp3"
+  },
+  {
+    "id": "sound_21",
+    "name": "morning-coffee-lofi-music-340021",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/morning-coffee-lofi-music-340021.mp3"
+  },
+  {
+    "id": "sound_22",
+    "name": "quiet-night-chill-lofi-332744",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/quiet-night-chill-lofi-332744.mp3"
+  },
+  {
+    "id": "sound_23",
+    "name": "rainy-lofi-city-lofi-music-332746",
+    "pathSound": "https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/assets/sounds/rainy-lofi-city-lofi-music-332746.mp3"
   }
 ]

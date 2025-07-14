@@ -60,9 +60,21 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
             ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              _bannerAd == null
+                  // Nothing to render yet.
+                  ? const SizedBox()
+                  // The actual ad.
+                  : Align(
+                      alignment: Alignment.bottomCenter,
+                      child: SizedBox(
+                        width: _bannerAd!.size.width.toDouble(),
+                        height: _bannerAd!.size.height.toDouble(),
+                        child: AdWidget(ad: _bannerAd!),
+                      ),
+                    ),
               Card(
                 semanticContainer: false,
                 elevation: 5,
@@ -110,7 +122,6 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 36),
               _bannerAd == null
                   // Nothing to render yet.
                   ? const SizedBox()
