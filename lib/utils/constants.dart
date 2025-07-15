@@ -7,4 +7,4 @@ final prefs = getIt<SharedPreferences>();
 
 const String darkMode = 'isDark';
 const String baseUrl =
-    'https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/';
+    'https://raw.githubusercontent.com/Vnsharing01/shimarin_chill/main/lib/';

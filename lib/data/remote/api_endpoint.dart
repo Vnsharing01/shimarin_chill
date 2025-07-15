@@ -1,3 +1,3 @@
 class ApiEndpoint {
-   static const String soundList = 'assets/sounds.json';
+   static const String soundList = 'data/jsons/sound.json';
 }
