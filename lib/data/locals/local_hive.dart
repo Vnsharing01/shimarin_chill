@@ -36,7 +36,6 @@ class LocalHive {
           duration: duration?.inMilliseconds,
           filePath: url,
           title: url.split('/').last.replaceAll('.mp3', ''),
-          coverImage: imgsUrl.first,
         );
 
         await soundBox.put(sound.id, sound);

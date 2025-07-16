@@ -1,8 +1,10 @@
 import 'package:hive_flutter/adapters.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'sound_model.g.dart';
 
 @HiveType(typeId: 0)
+@JsonSerializable()
 class SoundModel extends HiveObject {
   @HiveField(0)
   final String? id;
@@ -16,22 +18,15 @@ class SoundModel extends HiveObject {
   @HiveField(3)
   final int? duration; // thời gian chạy đếm ngược
 
-  @HiveField(4)
-  final String? coverImage; // Ảnh bìa sound
-
-  @HiveField(6)
-  final List<String>? albumIds;
-
-  @HiveField(7)
-  final List<String>? tags; // Chủ đề như: ["chill", "tập trung"]
-
   SoundModel({
     this.id,
     this.title,
     this.filePath,
     this.duration,
-    this.coverImage,
-    this.albumIds,
-    this.tags,
   });
+
+    factory SoundModel.fromJson(Map<String, dynamic> json) =>
+      _$SoundModelFromJson(json);
+
+  Map<String, dynamic> toJson(List<SoundModel> sounds) => _$SoundModelToJson(this);
 }
