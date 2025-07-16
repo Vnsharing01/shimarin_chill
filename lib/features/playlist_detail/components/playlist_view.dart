@@ -38,7 +38,7 @@ class _PlaylistViewState extends State<PlaylistView> {
   }) {
     return ListTile(
       title: Text(
-        item.title ?? '',
+        item.name ?? '',
         style: AppTextStyle.body16().copyWith(
           fontWeight: FontWeight.w500,
         ),
@@ -78,7 +78,7 @@ class _PlaylistViewState extends State<PlaylistView> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              item.title ?? '',
+              item.name ?? '',
               softWrap: true,
               maxLines: 2,
               style: AppTextStyle.body16(),

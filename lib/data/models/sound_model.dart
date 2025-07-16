@@ -10,7 +10,7 @@ class SoundModel extends HiveObject {
   final String? id;
 
   @HiveField(1)
-  final String? title; // tên sound
+  final String? name; // tên sound
 
   @HiveField(2)
   final String? filePath; // url sound file
@@ -20,13 +20,14 @@ class SoundModel extends HiveObject {
 
   SoundModel({
     this.id,
-    this.title,
+    this.name,
     this.filePath,
     this.duration,
   });
 
-    factory SoundModel.fromJson(Map<String, dynamic> json) =>
+  factory SoundModel.fromJson(Map<String, dynamic> json) =>
       _$SoundModelFromJson(json);
 
-  Map<String, dynamic> toJson(List<SoundModel> sounds) => _$SoundModelToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$SoundModelToJson(this);
 }

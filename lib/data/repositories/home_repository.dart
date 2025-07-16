@@ -2,13 +2,18 @@ import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/data/remote/api_client.dart';
 import 'package:shimarin_chill/data/remote/api_endpoint.dart';
 
-abstract class HomeRepository {}
+abstract class HomeRepository {
+  Future<List<SoundModel>> getDataFromGithub();
+}
 
 class ImpHomeRepository extends HomeRepository {
-  final _apiClient = ApiClient();
+  final ApiClient apiClient;
 
+  ImpHomeRepository(this.apiClient);
+
+  @override
   Future<List<SoundModel>> getDataFromGithub() async {
-    final res = await _apiClient.get(
+    final res = await apiClient.get(
       ApiEndpoint.soundList,
     );
     final List<dynamic> data = res.data;

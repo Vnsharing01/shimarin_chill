@@ -35,7 +35,7 @@ class LocalHive {
           id: "sound_${soundsUrl.indexOf(url)}",
           duration: duration?.inMilliseconds,
           filePath: url,
-          title: url.split('/').last.replaceAll('.mp3', ''),
+          name: url.split('/').last.replaceAll('.mp3', ''),
         );
 
         await soundBox.put(sound.id, sound);
@@ -52,27 +52,27 @@ class LocalHive {
 
     final chill = soundBox.values
         .where(
-          (element) => element.title!.toLowerCase().contains('chill'),
+          (element) => element.name!.toLowerCase().contains('chill'),
         )
         .toList();
     final coffee = soundBox.values
         .where(
-          (element) => element.title!.toLowerCase().contains('coffee'),
+          (element) => element.name!.toLowerCase().contains('coffee'),
         )
         .toList();
     final anime = soundBox.values
         .where(
-          (element) => element.title!.toLowerCase().contains('anime'),
+          (element) => element.name!.toLowerCase().contains('anime'),
         )
         .toList();
     final study = soundBox.values
         .where(
-          (element) => element.title!.toLowerCase().contains('study'),
+          (element) => element.name!.toLowerCase().contains('study'),
         )
         .toList();
     final rain = soundBox.values
         .where(
-          (element) => element.title!.toLowerCase().contains('rain'),
+          (element) => element.name!.toLowerCase().contains('rain'),
         )
         .toList();
 
