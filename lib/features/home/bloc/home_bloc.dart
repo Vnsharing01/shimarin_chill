@@ -72,9 +72,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         duration: duration?.inMilliseconds,
       );
       await box.put(sound.id, sound);
-
-      await localHive.initAlbums();
     }
+
+    await localHive.initAlbums();
 
     await prefs.setBool('downloaded', true);
 

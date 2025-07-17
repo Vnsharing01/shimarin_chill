@@ -24,14 +24,6 @@ class PlaylistDetailBloc
           ).single;
 
       if (data.isInBox) {
-        List<SoundModel> listMusic = [];
-
-        for (String id in data.soundIds ?? []) {
-          final sound = hiveDB.soundBox.values.singleWhere(
-            (element) => element.id == id,
-          );
-          listMusic.add(sound);
-        }
 
         await Future.delayed(
           const Duration(milliseconds: 1500),
@@ -40,7 +32,7 @@ class PlaylistDetailBloc
               state.copyWith(
                 loadStatus: LoadStatus.success,
                 data: data,
-                sounds: listMusic,
+                sounds: data.sounds,
               ),
             );
           },

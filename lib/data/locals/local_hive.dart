@@ -83,7 +83,7 @@ class LocalHive {
           (element) => element.contains("background"),
           orElse: () => dfImg,
         ),
-        soundIds: chill,
+        sounds: chill,
         tag: SoundTagEnum.chill.key,
       ),
       AlbumModel(
@@ -94,7 +94,7 @@ class LocalHive {
           (element) => element.contains("coffee"),
           orElse: () => dfImg,
         ),
-        soundIds: coffee,
+        sounds: coffee,
         tag: SoundTagEnum.coffee.key,
       ),
       AlbumModel(
@@ -105,7 +105,7 @@ class LocalHive {
           (element) => element.toLowerCase().contains("anime"),
           orElse: () => dfImg,
         ),
-        soundIds: anime,
+        sounds: anime,
         tag: SoundTagEnum.anime.key,
       ),
       AlbumModel(
@@ -116,7 +116,7 @@ class LocalHive {
           (element) => element.toLowerCase().contains("study"),
           orElse: () => dfImg,
         ),
-        soundIds: study,
+        sounds: study,
         tag: SoundTagEnum.study.key,
       ),
       AlbumModel(
@@ -127,7 +127,7 @@ class LocalHive {
           (element) => element.toLowerCase().contains("rain"),
           orElse: () => dfImg,
         ),
-        soundIds: rain,
+        sounds: rain,
         tag: SoundTagEnum.rain.key,
       ),
     ];
