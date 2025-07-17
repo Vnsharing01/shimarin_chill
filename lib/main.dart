@@ -8,7 +8,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimarin_chill/bloc/app_bloc.dart';
-import 'package:shimarin_chill/data/locals/local_hive.dart';
 import 'package:shimarin_chill/data/models/album_model.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/features/home/bloc/home_bloc.dart';
@@ -35,11 +34,6 @@ void main() async {
 
   await Hive.openBox<SoundModel>('sounds');
   await Hive.openBox<AlbumModel>('albums');
-
-  final localHive = LocalHive();
-
-  await localHive.initSounds();
-  await localHive.initAlbums();
 
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

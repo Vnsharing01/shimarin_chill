@@ -1,3 +1,4 @@
+import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -5,6 +6,7 @@ part 'sound_model.g.dart';
 
 @HiveType(typeId: 0)
 @JsonSerializable()
+@CopyWith()
 class SoundModel extends HiveObject {
   @HiveField(0)
   final String? id;
