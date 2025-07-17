@@ -1,12 +1,9 @@
-import 'dart:developer';
 
 import 'package:hive_flutter/adapters.dart';
-import 'package:just_audio/just_audio.dart';
 import 'package:shimarin_chill/data/models/album_model.dart';
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/utils/enum/sound_tag_enum.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
-import 'package:shimarin_chill/utils/paths/sounds_path.dart';
 
 class LocalHive {
   final soundPath = "assets/sounds";
@@ -16,34 +13,34 @@ class LocalHive {
   final sounds = [];
   final albums = [];
 
-  Future<void> initSounds() async {
-    if (soundBox.isNotEmpty) {
-      return;
-    }
+  // Future<void> initSounds() async {
+  //   if (soundBox.isNotEmpty) {
+  //     return;
+  //   }
 
-    final player = AudioPlayer();
+  //   final player = AudioPlayer();
 
-    for (String url in soundsUrl) {
-      try {
-        await player.setAsset(url);
-        final duration = await player.durationStream.firstWhere(
-          (element) => element != null,
-        );
-        // final avatar = url.split('/').last.replaceAll('.mp3', '').contains(other)
+  //   for (String url in soundsUrl) {
+  //     try {
+  //       await player.setAsset(url);
+  //       final duration = await player.durationStream.firstWhere(
+  //         (element) => element != null,
+  //       );
+  //       // final avatar = url.split('/').last.replaceAll('.mp3', '').contains(other)
 
-        final sound = SoundModel(
-          id: "sound_${soundsUrl.indexOf(url)}",
-          duration: duration?.inMilliseconds,
-          filePath: url,
-          name: url.split('/').last.replaceAll('.mp3', ''),
-        );
+  //       final sound = SoundModel(
+  //         id: "sound_${soundsUrl.indexOf(url)}",
+  //         duration: duration?.inMilliseconds,
+  //         filePath: url,
+  //         name: url.split('/').last.replaceAll('.mp3', ''),
+  //       );
 
-        await soundBox.put(sound.id, sound);
-      } catch (e) {
-        log('❌ Lỗi khi load $url: $e');
-      }
-    }
-  }
+  //       await soundBox.put(sound.id, sound);
+  //     } catch (e) {
+  //       log('❌ Lỗi khi load $url: $e');
+  //     }
+  //   }
+  // }
 
   Future<void> initAlbums() async {
     if (albumBox.isNotEmpty) {
@@ -86,7 +83,7 @@ class LocalHive {
           (element) => element.contains("background"),
           orElse: () => dfImg,
         ),
-        soundIds: chill.map<String>((e) => e.id!).toList(),
+        soundIds: chill,
         tag: SoundTagEnum.chill.key,
       ),
       AlbumModel(
@@ -97,7 +94,7 @@ class LocalHive {
           (element) => element.contains("coffee"),
           orElse: () => dfImg,
         ),
-        soundIds: coffee.map<String>((e) => e.id!).toList(),
+        soundIds: coffee,
         tag: SoundTagEnum.coffee.key,
       ),
       AlbumModel(
@@ -108,7 +105,7 @@ class LocalHive {
           (element) => element.toLowerCase().contains("anime"),
           orElse: () => dfImg,
         ),
-        soundIds: anime.map<String>((e) => e.id!).toList(),
+        soundIds: anime,
         tag: SoundTagEnum.anime.key,
       ),
       AlbumModel(
@@ -119,7 +116,7 @@ class LocalHive {
           (element) => element.toLowerCase().contains("study"),
           orElse: () => dfImg,
         ),
-        soundIds: study.map<String>((e) => e.id!).toList(),
+        soundIds: study,
         tag: SoundTagEnum.study.key,
       ),
       AlbumModel(
@@ -130,7 +127,7 @@ class LocalHive {
           (element) => element.toLowerCase().contains("rain"),
           orElse: () => dfImg,
         ),
-        soundIds: rain.map<String>((e) => e.id!).toList(),
+        soundIds: rain,
         tag: SoundTagEnum.rain.key,
       ),
     ];

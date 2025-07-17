@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     final bloc = context.read<HomeBloc>();
+
     if (bloc.state.loadStatus == LoadStatus.loading ||
         bloc.state.loadStatus == LoadStatus.initial) {
       context.read<HomeBloc>().add(AddPlaylist());

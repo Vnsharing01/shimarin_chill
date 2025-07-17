@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:shimarin_chill/data/models/sound_model.dart';
 import 'package:shimarin_chill/data/remote/api_client.dart';
 import 'package:shimarin_chill/data/remote/api_endpoint.dart';
@@ -16,7 +18,7 @@ class ImpHomeRepository extends HomeRepository {
     final res = await apiClient.get(
       ApiEndpoint.soundList,
     );
-    final List<dynamic> data = res.data;
+    final List<dynamic> data = jsonDecode(res.data);
     if (res.statusCode != 200) {
       return [];
     } else {
