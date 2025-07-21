@@ -43,11 +43,6 @@ class _PlaylistViewState extends State<PlaylistView> {
           fontWeight: FontWeight.w500,
         ),
       ),
-      subtitle: Text(
-        formatDurationMMSS(
-          Duration(milliseconds: item.duration ?? 0),
-        ),
-      ),
       leading: CircleAvatar(
         child: Icon(
           AppIcons.musicNote,
@@ -84,7 +79,7 @@ class _PlaylistViewState extends State<PlaylistView> {
               style: AppTextStyle.body16(),
             ),
             Text(
-              formatDurationHHMM(
+              formatDurationMMSS(
                 Duration(milliseconds: item.duration ?? 0),
               ),
               style: AppTextStyle.body14(),
