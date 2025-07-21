@@ -86,7 +86,7 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
         useLazyPreparation: true,
         children: (state.sounds ?? []).map(
           (path) {
-            return AudioSource.asset(path.filePath!);
+            return AudioSource.file(path.filePath!);
           },
         ).toList());
 

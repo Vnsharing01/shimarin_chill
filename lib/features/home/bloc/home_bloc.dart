@@ -67,7 +67,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final duration = await player.durationStream.firstWhere(
         (element) => element != null,
       );
-      sound.copyWith(
+     sound = sound.copyWith(
         filePath: localPath,
         duration: duration?.inMilliseconds,
       );
