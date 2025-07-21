@@ -4,3 +4,7 @@ abstract class FinishPlaylistEvent{
   const FinishPlaylistEvent();
 
 }
+
+class PlayFinishSound extends FinishPlaylistEvent{
+  
+}
