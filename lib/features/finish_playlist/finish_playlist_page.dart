@@ -55,10 +55,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<FinishPlaylistBloc, FinishPlaylistState>(
-      listener: (context, state) {
-        
-      },
+    return BlocBuilder<FinishPlaylistBloc, FinishPlaylistState>(
       builder: (context, state) {
         return SafeArea(
           child: Scaffold(
@@ -85,9 +82,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _bannerAdTop == null
-                      // Nothing to render yet.
-                      ? const SizedBox()
-                      // The actual ad.
+                      ? const SizedBox.shrink()
                       : Align(
                           alignment: Alignment.bottomCenter,
                           child: SizedBox(
@@ -144,7 +139,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                     ),
                   ),
                   _bannerAdBottom == null
-                      ? const SizedBox()
+                      ? const SizedBox.shrink()
                       : Align(
                           alignment: Alignment.bottomCenter,
                           child: SizedBox(
