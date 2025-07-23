@@ -61,13 +61,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final soundList = await repository.getDataFromGithub();
 
     for (var sound in soundList) {
-      final localPath = await downloadFile(sound.filePath!, sound.name!);
+      final urlName = sound.filePath?.split('/').last.replaceAll('.mp3', '');
+      final localPath = await downloadFile(sound.filePath!, urlName!);
 
       await player.setFilePath(localPath);
       final duration = await player.durationStream.firstWhere(
         (element) => element != null,
       );
-     sound = sound.copyWith(
+      sound = sound.copyWith(
         filePath: localPath,
         duration: duration?.inMilliseconds,
       );
