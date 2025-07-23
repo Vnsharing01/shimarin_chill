@@ -101,43 +101,43 @@
   },
   {
     "id": "sound_21",
-    "name": "lofi background music 1",
+    "name": "lofi background music",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-background-music-336230.mp3"
   },
   {
     "id": "sound_22",
-    "name": "lofi background music 2",
+    "name": "lofi background music",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-background-music-337568.mp3"
   },
   {
     "id": "sound_23",
-    "name": "lofi-chill-lofi-postcard",
+    "name": "lofi chill lofi postcard",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-chill-lofi-postcard.mp3"
   },
   {
     "id": "sound_24",
-    "name": "lofi chill lofi rain",
-    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-chill-lofi-rain.mp3"
-  },
-  {
-    "id": "sound_25",
-    "name": "lofi coffee 1",
+    "name": "lofi coffee",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-coffee-330550.mp3"
   },
   {
-    "id": "sound_26",
-    "name": "lofi coffee 2",
+    "id": "sound_25",
+    "name": "lofi coffee",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-coffee-332824.mp3"
   },
   {
-    "id": "sound_27",
+    "id": "sound_26",
     "name": "lofi for focus study and working",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-for-focus-study-and-working.mp3"
   },
   {
-    "id": "sound_28",
+    "id": "sound_27",
     "name": "lofi rain lofi music",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-rain-lofi-music-332732.mp3"
+  },
+  {
+    "id": "sound_28",
+    "name": "lofi relax",
+    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/lofi-relax.mp3"
   },
   {
     "id": "sound_29",
@@ -146,32 +146,42 @@
   },
   {
     "id": "sound_30",
-    "name": "night coffee study",
-    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/night-coffee-study.mp3"
+    "name": "night coffee shop",
+    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/night-coffee-shop.mp3"
   },
   {
     "id": "sound_31",
+    "name": "overtime study",
+    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/overtime-study.mp3"
+  },
+  {
+    "id": "sound_32",
     "name": "quiet night chill lofi",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/quiet-night-chill-lofi-332744.mp3"
   },
   {
-    "id": "sound_32",
+    "id": "sound_33",
     "name": "rainy lofi city lofi music",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/rainy-lofi-city-lofi-music-332746.mp3"
   },
   {
-    "id": "sound_33",
+    "id": "sound_34",
     "name": "sleepy cat rain",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/sleepy-cat-rain.mp3"
   },
   {
-    "id": "sound_34",
+    "id": "sound_35",
+    "name": "tasty lofi rain vibe",
+    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/tasty-lofi-rain-vibe.mp3"
+  },
+  {
+    "id": "sound_36",
     "name": "the last train rain",
     "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/the-last-train-rain.mp3"
   },
   {
-    "id": "sound_35",
-    "name": "white piano warm home rain",
-    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/white-piano-warm-home-rain.mp3"
+    "id": "sound_37",
+    "name": "wish you were here rain",
+    "filePath": "https://raw.githubusercontent.com/Vnsharing01/gitdata/main/shimarinchill/sounds/wish-you-were-here-rain.mp3"
   }
 ]
