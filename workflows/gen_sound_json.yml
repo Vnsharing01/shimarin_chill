@@ -1,0 +1,58 @@
+name: Generate sounds.json
+
+on:
+  push:
+    paths:
+      - 'shimarinchill/sounds/**'
+      - '.github/workflows/gen_json.yml'
+  workflow_dispatch:
+
+jobs:
+  generate-json:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: |
+        npm init -y
+        npm install fs path
+
+    - name: Generate sounds.json
+      run: |
+        node <<EOF
+        const fs = require('fs');
+        const path = require('path');
+
+        const soundsDir = path.join(__dirname, '../../shimarinchill/sounds');
+        const outputFile = path.join(__dirname, '../../shimarinchill/sounds.json');
+
+        const files = fs.readdirSync(soundsDir).filter(file => file.endsWith('.mp3'));
+
+        const data = files.map((file, index) => {
+          const nameWithoutExt = file.replace(/\.mp3$/, '')
+                                     .replace(/-\d+$/, '')
+                                     .replace(/-/g, ' ')
+                                     .trim();
+          return {
+            id: `sound_${(index + 1).toString().padStart(2, '0')}`,
+            name: nameWithoutExt,
+            filePath: `https://raw.githubusercontent.com/${process.env.GITHUB_REPOSITORY}/main/shimarinchill/sounds/${encodeURIComponent(file)}`
+          };
+        });
+
+        fs.writeFileSync(outputFile, JSON.stringify(data, null, 2));
+        console.log('Generated sounds.json with', data.length, 'items');
+        EOF
+
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "chore: auto-generate sounds.json from mp3 files"
