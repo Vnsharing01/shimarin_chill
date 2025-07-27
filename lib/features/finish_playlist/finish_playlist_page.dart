@@ -78,19 +78,19 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                 ),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  _bannerAdTop == null
-                      ? const SizedBox.shrink()
-                      : Align(
-                          alignment: Alignment.bottomCenter,
-                          child: SizedBox(
-                            width: _bannerAdTop!.size.width.toDouble(),
-                            height: _bannerAdTop!.size.height.toDouble(),
-                            child: AdWidget(ad: _bannerAdTop!),
-                          ),
-                        ),
+                  // _bannerAdTop == null
+                  //     ? const SizedBox.shrink()
+                  //     : Align(
+                  //         alignment: Alignment.bottomCenter,
+                  //         child: SizedBox(
+                  //           width: _bannerAdTop!.size.width.toDouble(),
+                  //           height: _bannerAdTop!.size.height.toDouble(),
+                  //           child: AdWidget(ad: _bannerAdTop!),
+                  //         ),
+                  //       ),
                   Card(
                     semanticContainer: false,
                     elevation: 5,
@@ -138,16 +138,16 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                       ),
                     ),
                   ),
-                  _bannerAdBottom == null
-                      ? const SizedBox.shrink()
-                      : Align(
-                          alignment: Alignment.bottomCenter,
-                          child: SizedBox(
-                            width: _bannerAdBottom!.size.width.toDouble(),
-                            height: _bannerAdBottom!.size.height.toDouble(),
-                            child: AdWidget(ad: _bannerAdBottom!),
-                          ),
-                        ),
+                  // _bannerAdBottom == null
+                  //     ? const SizedBox.shrink()
+                  //     : Align(
+                  //         alignment: Alignment.bottomCenter,
+                  //         child: SizedBox(
+                  //           width: _bannerAdBottom!.size.width.toDouble(),
+                  //           height: _bannerAdBottom!.size.height.toDouble(),
+                  //           child: AdWidget(ad: _bannerAdBottom!),
+                  //         ),
+                  //       ),
                 ],
               ),
             ),

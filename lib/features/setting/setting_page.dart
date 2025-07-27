@@ -78,11 +78,11 @@ class _SettingPageState extends State<SettingPage> {
                     },
                   ),
                   const SizedBox(height: 16),
-                  SettingItemView(
-                    title: 'Chia sẻ',
-                    icon: Icon(AppIcons.share),
-                    onTap: () {},
-                  ),
+                  // SettingItemView(
+                  //   title: 'Chia sẻ',
+                  //   icon: Icon(AppIcons.share),
+                  //   onTap: () {},
+                  // ),
                 ],
               ),
             )),

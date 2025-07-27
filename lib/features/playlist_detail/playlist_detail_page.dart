@@ -151,18 +151,18 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                       ],
                     ),
                   ),
-                  _bannerAd == null
-                      // Nothing to render yet.
-                      ? const SizedBox()
-                      // The actual ad.
-                      : Align(
-                          alignment: Alignment.bottomCenter,
-                          child: SizedBox(
-                            width: _bannerAd!.size.width.toDouble(),
-                            height: _bannerAd!.size.height.toDouble(),
-                            child: AdWidget(ad: _bannerAd!),
-                          ),
-                        ),
+                  // _bannerAd == null
+                  //     // Nothing to render yet.
+                  //     ? const SizedBox()
+                  //     // The actual ad.
+                  //     : Align(
+                  //         alignment: Alignment.bottomCenter,
+                  //         child: SizedBox(
+                  //           width: _bannerAd!.size.width.toDouble(),
+                  //           height: _bannerAd!.size.height.toDouble(),
+                  //           child: AdWidget(ad: _bannerAd!),
+                  //         ),
+                  //       ),
                 ],
               ),
             ),

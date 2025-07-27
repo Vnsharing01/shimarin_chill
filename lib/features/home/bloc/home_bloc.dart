@@ -20,6 +20,7 @@ part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final repository = ImpHomeRepository(ApiClient());
+  final downloaded = prefs.getBool('downloaded') ?? false;
   HomeBloc() : super(const HomeState()) {
     final localHive = LocalHive();
     on<AddPlaylist>((event, emit) async {
@@ -28,7 +29,20 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           loadStatus: LoadStatus.loading,
         ),
       );
+
+      if (!downloaded) {
+        emit(
+          state.copyWith(
+            isFirstDownload: false,
+          ),
+        );
+      }
       await downloadDataOnce();
+      emit(
+        state.copyWith(
+          isFirstDownload: prefs.getBool('downloaded'),
+        ),
+      );
       final listAlbum = localHive.albumBox.values.toList();
       if (listAlbum.isNotEmpty) {
         await Future.delayed(
@@ -51,15 +65,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final localHive = LocalHive();
     final box = Hive.box<SoundModel>('sounds');
 
-    final downloaded = prefs.getBool('downloaded') ?? false;
-
     if (downloaded) {
       Logger().i('log: Đã tải trước đó, bỏ qua');
       return;
     }
 
     final soundList = await repository.getDataFromGithub();
-
     for (var sound in soundList) {
       final urlName = sound.filePath?.split('/').last.replaceAll('.mp3', '');
       final localPath = await downloadFile(sound.filePath!, urlName!);
@@ -73,12 +84,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         duration: duration?.inMilliseconds,
       );
       await box.put(sound.id, sound);
+      await Future.delayed(const Duration(milliseconds: 500));
     }
 
     await localHive.initAlbums();
 
     await prefs.setBool('downloaded', true);
-
     Logger().f('log: Tải xong toàn bộ, đã lưu vào local');
   }
 
