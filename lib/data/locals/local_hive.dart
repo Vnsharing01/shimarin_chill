@@ -101,7 +101,7 @@ class LocalHive {
         id: 'album_anime',
         title: '🎌 Anime',
         description: 'Nhạc nền anime truyền cảm hứng.',
-        coverImage: imgsUrl.lastWhere(
+        coverImage: imgsUrl.firstWhere(
           (element) => element.toLowerCase().contains("anime"),
           orElse: () => dfImg,
         ),

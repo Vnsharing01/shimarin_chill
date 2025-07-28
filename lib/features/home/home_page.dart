@@ -7,6 +7,7 @@ import 'package:shimarin_chill/features/playlist_detail/playlist_detail_page.dar
 import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/constants.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
@@ -49,29 +50,30 @@ class _HomePageState extends State<HomePage> {
             context: context,
             barrierDismissible: false,
             builder: (context) => Dialog.fullscreen(
-              child: Container(
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(dfImg),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    loadingImg,
+                    scale: 3,
                   ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const CircularProgressIndicator(),
-                    const SizedBox(height: 16),
-                    Text(
-                      'Xin vui lòng chờ một chút.\nỨng dụng đang tải tài nguyên.',
-                      style: AppTextStyle.body16(),
-                    )
-                  ],
-                ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Ứng dụng đang tải tài nguyên, \nXin vui lòng chờ một chút.',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.lable(size: 16),
+                  ),
+                  Text(
+                    '(Tài nguyên sẽ được tải một lần duy nhất.)',
+                    textAlign: TextAlign.center,
+                    style: AppTextStyle.body12(),
+                  )
+                ],
               ),
             ),
           );
-        }
-        if (state.isFirstDownload) {
+        } else {
           if (Navigator.of(context, rootNavigator: true).canPop()) {
             Navigator.of(context, rootNavigator: true).pop();
           }
@@ -80,9 +82,12 @@ class _HomePageState extends State<HomePage> {
       builder: (context, state) {
         if ((state.loadStatus == LoadStatus.loading ||
             state.loadStatus == LoadStatus.initial)) {
-          return const Scaffold(
+          return Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: Image.asset(
+                loadingImg,
+                scale: 4,
+              ),
             ),
           );
         }
@@ -100,9 +105,10 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             body: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
+                  const SizedBox(height: 24),
                   Expanded(
                     child: ListView.separated(
                       shrinkWrap: true,
@@ -112,10 +118,12 @@ class _HomePageState extends State<HomePage> {
                           height: 100,
                           data: item,
                           onTap: () {
-                            context.push(RouterPath.playlistDetail,
-                                extra: DetailArguments(
-                                  albumId: item?.id ?? '',
-                                ));
+                            context.push(
+                              RouterPath.playlistDetail,
+                              extra: DetailArguments(
+                                albumId: item?.id ?? '',
+                              ),
+                            );
                           },
                         );
                       },
@@ -124,15 +132,16 @@ class _HomePageState extends State<HomePage> {
                       itemCount: state.albums?.length ?? 0,
                     ),
                   ),
-                  // _bannerAd == null
-                  //     // Nothing to render yet.
-                  //     ? const SizedBox()
-                  //     // The actual ad.
-                  //     : SizedBox(
-                  //         width: _bannerAd!.size.width.toDouble(),
-                  //         height: _bannerAd!.size.height.toDouble(),
-                  //         child: AdWidget(ad: _bannerAd!),
-                  //       ),
+                  _bannerAd == null
+                      ? const SizedBox(height: 24)
+                      : const SizedBox.shrink(),
+                  _bannerAd == null
+                      ? const SizedBox()
+                      : SizedBox(
+                          width: _bannerAd!.size.width.toDouble(),
+                          height: _bannerAd!.size.height.toDouble(),
+                          child: AdWidget(ad: _bannerAd!),
+                        ),
                 ],
               ),
             ),
@@ -146,7 +155,7 @@ class _HomePageState extends State<HomePage> {
   void loadAd() {
     final bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: adUnitTestId,
       request: const AdRequest(),
       listener: BannerAdListener(
         // Called when an ad is successfully received.

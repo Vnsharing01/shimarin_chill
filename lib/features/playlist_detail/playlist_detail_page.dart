@@ -8,6 +8,7 @@ import 'package:shimarin_chill/features/playlist_detail/components/playlist_view
 import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/constants.dart';
 import 'package:shimarin_chill/utils/enum/load_status.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
@@ -69,9 +70,12 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
       listener: (context, state) {},
       builder: (context, state) {
         if ((state.loadStatus == LoadStatus.loading)) {
-          return const Scaffold(
+          return Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: Image.asset(
+                loadingImg,
+                scale: 4,
+              ),
             ),
           );
         }
@@ -151,18 +155,16 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
                       ],
                     ),
                   ),
-                  // _bannerAd == null
-                  //     // Nothing to render yet.
-                  //     ? const SizedBox()
-                  //     // The actual ad.
-                  //     : Align(
-                  //         alignment: Alignment.bottomCenter,
-                  //         child: SizedBox(
-                  //           width: _bannerAd!.size.width.toDouble(),
-                  //           height: _bannerAd!.size.height.toDouble(),
-                  //           child: AdWidget(ad: _bannerAd!),
-                  //         ),
-                  //       ),
+                  _bannerAd == null
+                      ? const SizedBox()
+                      : Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: _bannerAd!.size.width.toDouble(),
+                            height: _bannerAd!.size.height.toDouble(),
+                            child: AdWidget(ad: _bannerAd!),
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -245,7 +247,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
   void loadAd() {
     final bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: adUnitTestId,
       request: const AdRequest(),
       listener: BannerAdListener(
         // Called when an ad is successfully received.

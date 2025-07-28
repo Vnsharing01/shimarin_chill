@@ -43,9 +43,13 @@ class _PlaylistViewState extends State<PlaylistView> {
           fontWeight: FontWeight.w500,
         ),
       ),
-      leading: CircleAvatar(
-        child: Icon(
-          AppIcons.musicNote,
+      leading: Material(
+        shape: const CircleBorder(),
+        elevation: 1,
+        child: CircleAvatar(
+          child: Icon(
+            AppIcons.musicNote,
+          ),
         ),
       ),
       onTap: () {

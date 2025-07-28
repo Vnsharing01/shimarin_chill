@@ -3,13 +3,13 @@ const _imagePath = "assets/images";
 const dfImg = "$_imagePath/study_001.png";
 
 final imgsUrl = [
+  "$_imagePath/anime_chill_005.jpg",
   "$_imagePath/anime_chill.jpg",
   "$_imagePath/anime_chill_001.jpg",
   "$_imagePath/anime_chill_002.jpg",
   "$_imagePath/anime_chill_004.jpg",
   "$_imagePath/anime_chill_003.jpg",
   "$_imagePath/anime_chill_006.jpg",
-  "$_imagePath/anime_chill_005.jpg",
   "$_imagePath/background_chill_001.jpg",
   "$_imagePath/background_chill_coffee.jpg",
   "$_imagePath/background_chill.jpg",
@@ -27,4 +27,7 @@ final imgsUrl = [
   "$_imagePath/study_001.png",
   "$_imagePath/study_chill.jpg",
   "$_imagePath/study_girl.jpg",
+  "$_imagePath/anime_girl_rain.jpg"
 ];
+
+const String loadingImg = 'assets/gifs/A-chan.gif';

@@ -7,6 +7,7 @@ import 'package:shimarin_chill/features/playlist_detail/playlist_detail_page.dar
 import 'package:shimarin_chill/routes/router_path.dart';
 import 'package:shimarin_chill/utils/app_icon.dart';
 import 'package:shimarin_chill/utils/app_text_style.dart';
+import 'package:shimarin_chill/utils/constants.dart';
 import 'package:shimarin_chill/utils/paths/images_path.dart';
 import 'package:shimarin_chill/widgets/app_bar/df_appbar.dart';
 import 'package:shimarin_chill/widgets/button/btn_text.dart';
@@ -81,16 +82,16 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // _bannerAdTop == null
-                  //     ? const SizedBox.shrink()
-                  //     : Align(
-                  //         alignment: Alignment.bottomCenter,
-                  //         child: SizedBox(
-                  //           width: _bannerAdTop!.size.width.toDouble(),
-                  //           height: _bannerAdTop!.size.height.toDouble(),
-                  //           child: AdWidget(ad: _bannerAdTop!),
-                  //         ),
-                  //       ),
+                  _bannerAdTop == null
+                      ? const SizedBox.shrink()
+                      : Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: _bannerAdTop!.size.width.toDouble(),
+                            height: _bannerAdTop!.size.height.toDouble(),
+                            child: AdWidget(ad: _bannerAdTop!),
+                          ),
+                        ),
                   Card(
                     semanticContainer: false,
                     elevation: 5,
@@ -138,16 +139,16 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                       ),
                     ),
                   ),
-                  // _bannerAdBottom == null
-                  //     ? const SizedBox.shrink()
-                  //     : Align(
-                  //         alignment: Alignment.bottomCenter,
-                  //         child: SizedBox(
-                  //           width: _bannerAdBottom!.size.width.toDouble(),
-                  //           height: _bannerAdBottom!.size.height.toDouble(),
-                  //           child: AdWidget(ad: _bannerAdBottom!),
-                  //         ),
-                  //       ),
+                  _bannerAdBottom == null
+                      ? const SizedBox.shrink()
+                      : Align(
+                          alignment: Alignment.bottomCenter,
+                          child: SizedBox(
+                            width: _bannerAdBottom!.size.width.toDouble(),
+                            height: _bannerAdBottom!.size.height.toDouble(),
+                            child: AdWidget(ad: _bannerAdBottom!),
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -161,7 +162,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
   void loadAd() {
     final bannerAdTop = BannerAd(
       size: AdSize.banner,
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: adUnitTestId,
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (ad) {
@@ -183,7 +184,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
 
     final bannerAdBottom = BannerAd(
       size: AdSize.banner,
-      adUnitId: 'ca-app-pub-3940256099942544/6300978111',
+      adUnitId: adUnitTestId,
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (ad) {
