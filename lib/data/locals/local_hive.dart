@@ -77,8 +77,8 @@ class LocalHive {
       AlbumModel(
         id: "album_chill",
         description:
-            "Tổng hợp các bài nhạc chill phù hợp cho giải trí và làm làm việc.",
-        title: "🎧 Chill",
+            "Thư giãn với những bản nhạc chill nhẹ nhàng, lý tưởng để giải tỏa căng thẳng và tạo không gian làm việc yên bình.",
+        title: "🌿 Chill",
         coverImage: imgsUrl.firstWhere(
           (element) => element.contains("background"),
           orElse: () => dfImg,
@@ -89,7 +89,7 @@ class LocalHive {
       AlbumModel(
         id: 'album_coffee',
         title: '☕ Coffee',
-        description: 'Nhạc lofi nhẹ nhàng cho quán cà phê hoặc làm việc.',
+        description: 'Hòa mình vào không gian quán cà phê với giai điệu lofi êm dịu, giúp bạn tập trung và khơi gợi cảm hứng làm việc.',
         coverImage: imgsUrl.firstWhere(
           (element) => element.contains("coffee"),
           orElse: () => dfImg,
@@ -99,8 +99,8 @@ class LocalHive {
       ),
       AlbumModel(
         id: 'album_anime',
-        title: '🎌 Anime',
-        description: 'Nhạc nền anime truyền cảm hứng.',
+        title: '🌸 Anime',
+        description: 'Đắm chìm trong thế giới anime cùng những bản nhạc nền truyền cảm hứng, đầy màu sắc và cảm xúc.',
         coverImage: imgsUrl.firstWhere(
           (element) => element.toLowerCase().contains("anime"),
           orElse: () => dfImg,
@@ -110,8 +110,8 @@ class LocalHive {
       ),
       AlbumModel(
         id: 'album_study',
-        title: '📚 Study',
-        description: 'Tập trung học tập cùng nhạc không lời.',
+        title: '📝 Study',
+        description: 'Tập trung tối đa với nhạc không lời dịu nhẹ, hỗ trợ tăng cường sự chú ý và duy trì năng suất học tập lâu dài.',
         coverImage: imgsUrl.firstWhere(
           (element) => element.toLowerCase().contains("study"),
           orElse: () => dfImg,
@@ -121,8 +121,8 @@ class LocalHive {
       ),
       AlbumModel(
         id: 'album_rain',
-        title: '🌧️ Nature & Rain',
-        description: 'Âm thanh thiên nhiên giúp thư giãn.',
+        title: '🌧️ Rain',
+        description: 'Thư giãn sâu với bản nhạc nền kết hợp tiếng mưa rơi, mang lại cảm giác dễ chịu và nhẹ nhàng như một buổi chiều bình yên bên hiên nhà.',
         coverImage: imgsUrl.firstWhere(
           (element) => element.toLowerCase().contains("rain"),
           orElse: () => dfImg,
