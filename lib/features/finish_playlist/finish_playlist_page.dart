@@ -69,7 +69,6 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
             body: Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(
-                vertical: 24,
                 horizontal: 16,
               ),
               decoration: const BoxDecoration(
@@ -79,7 +78,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
                 ),
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   _bannerAdTop == null

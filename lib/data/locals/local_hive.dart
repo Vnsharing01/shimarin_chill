@@ -13,35 +13,6 @@ class LocalHive {
   final sounds = [];
   final albums = [];
 
-  // Future<void> initSounds() async {
-  //   if (soundBox.isNotEmpty) {
-  //     return;
-  //   }
-
-  //   final player = AudioPlayer();
-
-  //   for (String url in soundsUrl) {
-  //     try {
-  //       await player.setAsset(url);
-  //       final duration = await player.durationStream.firstWhere(
-  //         (element) => element != null,
-  //       );
-  //       // final avatar = url.split('/').last.replaceAll('.mp3', '').contains(other)
-
-  //       final sound = SoundModel(
-  //         id: "sound_${soundsUrl.indexOf(url)}",
-  //         duration: duration?.inMilliseconds,
-  //         filePath: url,
-  //         name: url.split('/').last.replaceAll('.mp3', ''),
-  //       );
-
-  //       await soundBox.put(sound.id, sound);
-  //     } catch (e) {
-  //       log('❌ Lỗi khi load $url: $e');
-  //     }
-  //   }
-  // }
-
   Future<void> initAlbums() async {
     if (albumBox.isNotEmpty) {
       return;
