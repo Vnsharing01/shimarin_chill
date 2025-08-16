@@ -257,12 +257,10 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
           }
           setState(() {
             _bannerAd = ad as BannerAd;
-            debugPrint('BannerAd success');
           });
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (ad, error) {
-          debugPrint('BannerAd failed to load: $error');
           ad.dispose();
         },
       ),

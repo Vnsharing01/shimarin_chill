@@ -76,7 +76,6 @@ class _MusicPlayPageState extends State<MusicPlayPage>
 
     _animationController.addStatusListener((status) async {
       if (status == AnimationStatus.dismissed) {
-        debugPrint("⏰ Đã hết thời gian");
         mBloc.add(MusicStop());
         // xoay dọc màn hình
         await SystemChrome.setPreferredOrientations([

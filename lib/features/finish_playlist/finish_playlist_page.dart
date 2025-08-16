@@ -171,11 +171,9 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
           }
           setState(() {
             _bannerAdTop = ad as BannerAd;
-            debugPrint('BannerAd success');
           });
         },
         onAdFailedToLoad: (ad, error) {
-          debugPrint('BannerAd failed to load: $error');
           ad.dispose();
         },
       ),
@@ -193,11 +191,9 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
           }
           setState(() {
             _bannerAdBottom = ad as BannerAd;
-            debugPrint('BannerAd success');
           });
         },
         onAdFailedToLoad: (ad, error) {
-          debugPrint('BannerAd failed to load: $error');
           ad.dispose();
         },
       ),
