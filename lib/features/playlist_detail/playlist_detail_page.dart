@@ -246,7 +246,7 @@ class _PlaylistDetailPageState extends State<PlaylistDetailPage>
   void loadAd() {
     final bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: adUnitTestId,
+      adUnitId: adUnitId,
       request: const AdRequest(),
       listener: BannerAdListener(
         // Called when an ad is successfully received.

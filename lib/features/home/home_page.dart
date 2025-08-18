@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
   void loadAd() {
     final bannerAd = BannerAd(
       size: AdSize.banner,
-      adUnitId: adUnitTestId,
+      adUnitId: adUnitId,
       request: const AdRequest(),
       listener: BannerAdListener(
         // Called when an ad is successfully received.

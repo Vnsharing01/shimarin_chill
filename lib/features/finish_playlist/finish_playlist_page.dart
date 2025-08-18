@@ -161,7 +161,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
   void loadAd() {
     final bannerAdTop = BannerAd(
       size: AdSize.banner,
-      adUnitId: adUnitTestId,
+      adUnitId: adUnitId,
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (ad) {
@@ -181,7 +181,7 @@ class _FinishPlaylistPageState extends State<FinishPlaylistPage> {
 
     final bannerAdBottom = BannerAd(
       size: AdSize.banner,
-      adUnitId: adUnitTestId,
+      adUnitId: adUnitId,
       request: const AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (ad) {
