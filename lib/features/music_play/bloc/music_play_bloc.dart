@@ -25,7 +25,6 @@ class MusicPlayBloc extends Bloc<MusicPlayEvent, MusicPlayState> {
     audioPlayer.processingStateStream.listen(
       (event) async {
         if (event == ProcessingState.completed) {
-          print("chạy lại");
           audioPlayer.seek(
             Duration.zero,
           );

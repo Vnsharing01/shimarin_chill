@@ -58,6 +58,7 @@ class _MusicPlayPageState extends State<MusicPlayPage>
         // xoay ngang màn hình
         SystemChrome.setPreferredOrientations([
           DeviceOrientation.landscapeRight,
+          DeviceOrientation.landscapeLeft,
         ]);
       },
     );
